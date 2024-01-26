@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class IngredientShelf : MonoBehaviour
 {
     public GameObject ingredient;
+    public GameObject mouseFollower;
     // Start is called before the first frame update
     private Camera m_Camera;
     void Awake()
@@ -22,7 +23,14 @@ public class IngredientShelf : MonoBehaviour
             Ray ray = m_Camera.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                // Use the hit variable to determine what was clicked on.
+                if(hit.collider.gameObject == this.gameObject)
+                {
+                    if(mouseFollower.GetComponent<MouseFollower>().ingredientBeingCarried == null)
+                    {
+                        GameObject ingredientInstance = Instantiate(ingredient, new Vector3(), Quaternion.identity, mouseFollower.transform);
+                        mouseFollower.GetComponent<MouseFollower>().ingredientBeingCarried =  ingredientInstance.GetComponent<Ingredient>();
+                    }
+                }
             }
         }
     }

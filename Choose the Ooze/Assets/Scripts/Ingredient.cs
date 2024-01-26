@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
+    public string ingredinetName {get; set;}
+    public bool beingCarried {get; set;} = false;
     // Start is called before the first frame update
     void Start()
     {
