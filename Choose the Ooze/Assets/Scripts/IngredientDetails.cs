@@ -15,7 +15,7 @@ namespace IngredientDetails
     [CreateAssetMenu(fileName = "MaterialData", menuName = "ScriptableObjects/Material", order = 1)]
     public class Material : ScriptableObject
     {
-        public string name;
+        public string ingredientName;
         public uint cost;
         public Emotion emotion;
     }

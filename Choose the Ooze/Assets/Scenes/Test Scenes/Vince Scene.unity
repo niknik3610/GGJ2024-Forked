@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: {fileID: 7048021794343309273, guid: 6e3d64e56de35f747970d688949d31a0, type: 3}
-  mouseFollower: {fileID: 1393223930}
 --- !u!1 &1145390883
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +479,7 @@ Transform:
   m_GameObject: {fileID: 1509740746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.04, y: -2.19, z: 0.016875882}
+  m_LocalPosition: {x: -7.92, y: -2.26, z: 0.016875882}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -499,7 +498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredients: []
-  mouseFollower: {fileID: 1393223932}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
