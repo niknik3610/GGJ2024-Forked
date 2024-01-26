@@ -7,11 +7,12 @@ using UnityEngine.InputSystem;
 
 public class Cauldron : MonoBehaviour
 {
+    private MouseFollower _mouseFollower;
     public List<Ingredient> ingredients = new List<Ingredient>();
-    public MouseFollower mouseFollower;
     private Camera m_Camera;
     void Awake()
     {
+        _mouseFollower = FindObjectOfType<MouseFollower>();
         m_Camera = Camera.main;
     }
     // Update is called once per frame
@@ -28,13 +29,12 @@ public class Cauldron : MonoBehaviour
             {
                 if(rhit.collider.gameObject == gameObject)
                 {
-                    Debug.Log("Clicked");
-                    if(mouseFollower.ingredientBeingCarried != null)
+                    if(_mouseFollower.ingredientBeingCarried != null)
                     {
-                        ingredients.Add(mouseFollower.ingredientBeingCarried);
-                        mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
-                        mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
-                        mouseFollower.ingredientBeingCarried = null;
+                        ingredients.Add(_mouseFollower.ingredientBeingCarried);
+                        _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
+                        _mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
+                        _mouseFollower.ingredientBeingCarried = null;
                     }
                 }
             }
