@@ -4,13 +4,13 @@ using UnityEngine;
 
 public enum SpecialClientType
 {
-    NONE,
-    FISH,
-    WIZARD,
-    VIKING,
-    CULTIST,
-    SCIENTIST,
-    PRINCESS,
-    MILKMAN,
-    CHILD,
+    None,
+    Fish,
+    Wizard,
+    Viking,
+    Cultist,
+    Scientist,
+    Princess,
+    Milkman,
+    Child,
 }

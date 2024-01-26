@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public record ClientRequest
+public enum Severity
 {
-    public ClientRequest(List<()>);
+    Standard,
+    High,
 }
+
+//public record ClientRequest(List<(IngredientDetails.Emotion, Severity)> Request_required_ingredients);

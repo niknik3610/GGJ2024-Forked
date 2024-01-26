@@ -4,13 +4,12 @@ namespace IngredientDetails
 {
     public enum Emotion
     {
-        // TODO: Replace with actual emotions
+        None,
+        Soothing,
+        Introspective,
+        Energetic,
+        Tranquil,
         Happy,
-        Sad,
-        Angry,
-        Fearful,
-        Disgusted,
-        Surprised
     }
 
     [CreateAssetMenu(fileName = "MaterialData", menuName = "ScriptableObjects/Material", order = 1)]

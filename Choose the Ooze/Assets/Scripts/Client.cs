@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class ClientRequestGenerator
 {
-    ClientRequest generateRequest(SpecialClient)
+    //ClientRequest generateRequest(SpecialClient)
 }
