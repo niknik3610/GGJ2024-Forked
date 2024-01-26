@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Ingredient : MonoBehaviour
 {
-    public string ingredinetName {get; set;}
+    public string ingredientName {get; set;}
     public bool beingCarried {get; set;} = false;
     private Camera m_Camera;
-
-    public SpriteMask hidingMask;
 
     void Awake()
     {
@@ -19,14 +15,15 @@ public class Ingredient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hidingMask = this.GetComponentInChildren<SpriteMask>();
-        hidingMask.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         Mouse mouse = Mouse.current;
+        Keyboard keyboard = Keyboard.current;
+        print(mouse);
+        print("keyboard " + keyboard);
         if (mouse.leftButton.wasPressedThisFrame)
         {
             Vector3 mousePosition = mouse.position.ReadValue();
@@ -42,6 +39,9 @@ public class Ingredient : MonoBehaviour
     }
 
     public void Slice(float slicePointX) {
+        SpriteMask hidingMask = this.GetComponentInChildren<SpriteMask>();
+        hidingMask.gameObject.SetActive(false);
+
         Transform maskTransform = hidingMask.gameObject.transform;
         maskTransform.position = new Vector3(slicePointX, maskTransform.transform.position.y, 0);
 
