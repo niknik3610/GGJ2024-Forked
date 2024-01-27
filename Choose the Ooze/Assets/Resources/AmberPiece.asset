@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Amber Piece
   cost: 30
-  emotion: 0
-  severity: 0
+  emotion: 1
+  severity: 1

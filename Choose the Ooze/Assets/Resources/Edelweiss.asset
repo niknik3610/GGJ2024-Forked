@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Edelweiss
   cost: 0
-  emotion: 0
+  emotion: 4
   severity: 0

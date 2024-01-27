@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Unicorn Hair
   cost: 60
-  emotion: 0
-  severity: 0
+  emotion: 5
+  severity: 1

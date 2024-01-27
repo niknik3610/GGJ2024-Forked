@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Cheese
   cost: 0
-  emotion: 0
+  emotion: 5
   severity: 0

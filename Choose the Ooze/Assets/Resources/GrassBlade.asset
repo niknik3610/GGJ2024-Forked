@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Grass Blade
   cost: 0
-  emotion: 0
+  emotion: 2
   severity: 0

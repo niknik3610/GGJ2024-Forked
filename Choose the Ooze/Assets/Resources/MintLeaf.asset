@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Mint Leaf
   cost: 0
-  emotion: 0
+  emotion: 1
   severity: 0

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Coffee Bean
   cost: 0
-  emotion: 0
+  emotion: 3
   severity: 0

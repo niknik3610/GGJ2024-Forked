@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class Cauldron : MonoBehaviour
 {
-    private List<IngredientDetails.Material> _materials = new();
+    public List<IngredientDetails.Material> _materials = new();
     private MouseFollower _mouseFollower;
     public float perfectWeakPotionValue;
     public float strongPotionMultiplier;
@@ -18,15 +18,12 @@ public class Cauldron : MonoBehaviour
     public float cutMarginOfError;
     public float incorrectSeverityMultiplier;
     public List<IngredientInstruction> ingredientInstructions = new ();
+    private int currentIngredientIndex = 0;
     public List<Ingredient> receivedIngredients = new();
     private Camera _camera;
     private float finalResult = 0f;
+    private ClientRequestGenerator requestGenerator;
     public TemperatureLevel temperatureLevel = TemperatureLevel.None;
-
-    public IngredientDetails.Material testMaterial;
-    public GrindLevel testGrindLevel;
-    public TemperatureLevel testTemperatureLevel;
-    public float testCuttingLevel;
     public TextMeshProUGUI temperatureText;
 
     void Awake()
@@ -38,7 +35,8 @@ public class Cauldron : MonoBehaviour
         {
             _materials.Add((IngredientDetails.Material)scripObjects[i]);
         }
-        ingredientInstructions.Add(new IngredientInstruction(testMaterial, new ProcessingLevels(testGrindLevel, testTemperatureLevel, testCuttingLevel)));
+        requestGenerator = new ClientRequestGenerator();
+        SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
     }
     // Update is called once per frame
     void Update()
@@ -75,6 +73,10 @@ public class Cauldron : MonoBehaviour
             case TemperatureLevel.High:
                 temperatureText.text = "Current Temp: High";
                 break;
+        }
+        if(ingredientInstructions.Count == 0)
+        {
+            SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
         }
     }
 
@@ -117,16 +119,17 @@ public class Cauldron : MonoBehaviour
     public void AddIngredient(Ingredient toAdd)
     {
         toAdd.currentLevels.temperatureLevel = temperatureLevel;
-        if(ingredientInstructions.Count == 0) 
+        if(currentIngredientIndex >= ingredientInstructions.Count) 
         {
+            Debug.Log("Extra ingredient. Value = 0");
             receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
             _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
             _mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
             _mouseFollower.ingredientBeingCarried = null;
             return;
         }
-        float result = EvaluateIngredient(ingredientInstructions[0], _mouseFollower.ingredientBeingCarried);
-        ingredientInstructions.RemoveAt(0);
+        float result = EvaluateIngredient(ingredientInstructions[currentIngredientIndex], _mouseFollower.ingredientBeingCarried);
+        currentIngredientIndex++;
         Debug.Log(result);
         finalResult += result;
         receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
@@ -151,6 +154,7 @@ public class Cauldron : MonoBehaviour
         }
         receivedIngredients = new();
         finalResult = 0f;
+        currentIngredientIndex = 0;
     }
 
     public void SetExpectedIngredients(ClientRequest request)
@@ -158,14 +162,20 @@ public class Cauldron : MonoBehaviour
         ResetCauldron();
         for(int i = 0; i < request.Request_required_ingredients.Count; i++)
         {
+            bool found = false;
             var (Emotion, Severity) = request.Request_required_ingredients[i];
             for(int j = 0; j < _materials.Count; j++)
             {
-                if(_materials[i].emotion == Emotion && _materials[i].severity == Severity)
+                if(_materials[j].emotion == Emotion && _materials[j].severity == Severity)
                 {
-                    ingredientInstructions.Add(new IngredientInstruction(_materials[i]));
+                    ingredientInstructions.Add(new IngredientInstruction(_materials[j]));
+                    found = true;
                     break;
                 }
+            }
+            if(found == false)
+            {
+                Debug.Log("ERROR: COULD NOT FIND MATERIAL: " + Emotion + " " + Severity);
             }
         }
     }

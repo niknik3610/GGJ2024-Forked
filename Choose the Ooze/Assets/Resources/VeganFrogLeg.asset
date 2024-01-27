@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Vegan Frog Leg
   cost: 25
-  emotion: 0
-  severity: 0
+  emotion: 4
+  severity: 1

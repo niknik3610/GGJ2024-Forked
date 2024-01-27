@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Magic Mushroom
   cost: 40
-  emotion: 0
-  severity: 0
+  emotion: 2
+  severity: 1
