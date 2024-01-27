@@ -7,6 +7,7 @@ using UnityEngine;
 public class Slicer : MonoBehaviour
 { 
     public SpriteMask ingredientOneMask;
+    const int PART_OFF_SET = 6;
 
     public void Slice(float slicePointX, Ingredient ingredient)
     {
@@ -41,7 +42,7 @@ public class Slicer : MonoBehaviour
         Ingredient cutPiece = Object.Instantiate(
             ingredient,
             new Vector3(
-                ingredient.transform.position.x + 5,
+                ingredient.transform.position.x + PART_OFF_SET,
                 Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y + ingredientOneMask.bounds.size.y / 2
             ),
             Quaternion.identity
@@ -49,16 +50,17 @@ public class Slicer : MonoBehaviour
         cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
         SpriteMask partMask = cutPiece.GetComponentInChildren<SpriteMask>();
 
-        partMask.transform.localScale = new Vector3(ingrHeight, ingrLeftPercent);
-        partMask.transform.rotation *= Quaternion.Euler(0, 0, -180);
+        partMask.gameObject.transform.localScale = new Vector3(1, 2);
 
+        partMask.gameObject.transform.localScale = new Vector3(
+            ingrHeight,
+            partMask.gameObject.transform.localScale.x * ingrLeftPercent * 2
+        );
 
-        // SpriteMask cutPieceMask = Object.Instantiate(ingredientOneMask, cutPos, Quaternion.identity);
-
-
-        // cutPieceMask.transform.rotation *= Quaternion.Euler(0, -90, 0);
-
-        // cutPieceMask.gameObject.SetActive(false);
+        partMask.gameObject.transform.position = new Vector3(
+            slicePointX + PART_OFF_SET - (partMask.bounds.size.x / 2),
+            partMask.transform.position.y
+        );
     }
 
    public void HideMasks() {
