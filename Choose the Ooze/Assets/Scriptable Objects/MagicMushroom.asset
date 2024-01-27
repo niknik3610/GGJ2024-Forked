@@ -15,4 +15,4 @@ MonoBehaviour:
   ingredientName: Magic Mushroom
   cost: 40
   emotion: 2
-  isStrong: 1
+  severity: 1

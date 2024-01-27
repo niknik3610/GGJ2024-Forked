@@ -18,6 +18,6 @@ namespace IngredientDetails
         public string ingredientName;
         public uint cost;
         public Emotion emotion;
-        public bool isStrong;
+        public Severity severity;
     }
 }

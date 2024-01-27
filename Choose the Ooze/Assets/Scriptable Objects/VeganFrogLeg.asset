@@ -15,4 +15,4 @@ MonoBehaviour:
   ingredientName: Vegan Frog Leg
   cost: 25
   emotion: 4
-  isStrong: 1
+  severity: 1

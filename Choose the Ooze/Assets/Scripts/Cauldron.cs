@@ -40,4 +40,9 @@ public class Cauldron : MonoBehaviour
             }
         }
     }
+
+    public void GenerateExpectedIngredients(ClientRequest requests)
+    {
+        s
+    }
 }

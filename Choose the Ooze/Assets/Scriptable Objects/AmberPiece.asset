@@ -15,4 +15,4 @@ MonoBehaviour:
   ingredientName: Amber Piece
   cost: 30
   emotion: 1
-  isStrong: 1
+  severity: 1

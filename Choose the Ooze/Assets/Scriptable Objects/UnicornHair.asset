@@ -15,4 +15,4 @@ MonoBehaviour:
   ingredientName: Unicorn Hair
   cost: 60
   emotion: 5
-  isStrong: 1
+  severity: 1

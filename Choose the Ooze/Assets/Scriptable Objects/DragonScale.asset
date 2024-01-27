@@ -15,4 +15,4 @@ MonoBehaviour:
   ingredientName: Dragon Scale
   cost: 50
   emotion: 3
-  isStrong: 1
+  severity: 1
