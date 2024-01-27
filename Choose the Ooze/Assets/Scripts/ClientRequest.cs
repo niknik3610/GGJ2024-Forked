@@ -10,5 +10,5 @@ public enum Severity
 
 public class ClientRequest
 {
-    List<(IngredientDetails.Emotion, Severity)> Request_required_ingredients;
+    public List<(IngredientDetails.Emotion, Severity)> Request_required_ingredients;
 }

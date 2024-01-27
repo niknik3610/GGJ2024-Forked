@@ -497,7 +497,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98939fa302dad324fbf6116df4309df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredients: []
+  perfectWeakPotionValue: 100
+  strongPotionMultiplier: 2
+  incorrectGrindStagePenalty: 20
+  incorrectHeatStagePenalty: 20
+  incorrectCutMultiplier: 100
+  cutMarginOfError: 0.05
+  incorrectSeverityMultiplier: 0.5
+  receivedIngredients: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

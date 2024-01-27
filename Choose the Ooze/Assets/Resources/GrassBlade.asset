@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f9645de12be75f7d9ffeb9a6d4eafd6, type: 3}
-  m_Name: MagicMushroom
+  m_Name: GrassBlade
   m_EditorClassIdentifier: 
-  ingredientName: Magic Mushroom
-  cost: 40
-  emotion: 2
-  severity: 1
+  ingredientName: Grass Blade
+  cost: 0
+  emotion: 0
+  severity: 0

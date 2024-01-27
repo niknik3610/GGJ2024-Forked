@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Ingredient : MonoBehaviour
 {
-    public Material material;
-    public ProcessingLevels requiredLevels;
+    public IngredientDetails.Material material;
     public ProcessingLevels currentLevels;
     public bool beingCarried {get; set;} = false;
     private Camera m_Camera;
