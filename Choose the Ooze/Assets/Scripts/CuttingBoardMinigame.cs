@@ -19,14 +19,14 @@ public class CuttingBoardMinigame : MonoBehaviour
     private bool allowedToCut;
 
 
-    public void Reset() {
+    public void ResetMiniGame() {
         allowedToCut = true;
         cutSign.SetActive(true);
         pickOneSign.SetActive(false);
     }
 
     void Awake() {
-        Reset();
+        ResetMiniGame();
         ingredient.gameObject.transform.SetParent(this.transform);
         ingredient.gameObject.transform.position = new Vector3(-5, -2f);
         mainCamera = Camera.main; 
