@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class IngredientShelf : MonoBehaviour
 {
     public GameObject ingredient;
+    public IngredientDetails.Material material;
     private MouseFollower _mouseFollower;
     // Start is called before the first frame update
     private Camera m_Camera;
@@ -29,7 +30,9 @@ public class IngredientShelf : MonoBehaviour
                     if(_mouseFollower.ingredientBeingCarried == null)
                     {
                         GameObject ingredientInstance = Instantiate(ingredient, new Vector3(), Quaternion.identity, _mouseFollower.transform);
-                        _mouseFollower.ingredientBeingCarried =  ingredientInstance.GetComponent<Ingredient>();
+                        _mouseFollower.ingredientBeingCarried = ingredientInstance.GetComponent<Ingredient>();
+                        _mouseFollower.ingredientBeingCarried.currentLevels = new ProcessingLevels(false);
+                        _mouseFollower.ingredientBeingCarried.material = material;
                     }
                 }
             }

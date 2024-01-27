@@ -9,4 +9,9 @@ public class IngredientInstruction
         material = Material;
         requiredLevels = new ProcessingLevels(true);
     }
+    public IngredientInstruction(IngredientDetails.Material Material, ProcessingLevels Levels)
+    {
+        material = Material;
+        requiredLevels = Levels;
+    }
 }

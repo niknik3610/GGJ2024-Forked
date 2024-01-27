@@ -19,6 +19,12 @@ public class Cauldron : MonoBehaviour
     public List<IngredientInstruction> ingredientInstructions = new ();
     public List<Ingredient> receivedIngredients = new();
     private Camera m_Camera;
+    private float finalResult = 0f;
+
+    public IngredientDetails.Material testMaterial;
+    public GrindLevel testGrindLevel;
+    public TemperatureLevel testTemperatureLevel;
+    public float testCuttingLevel;
     void Awake()
     {
         _mouseFollower = FindObjectOfType<MouseFollower>();
@@ -28,6 +34,7 @@ public class Cauldron : MonoBehaviour
         {
             _materials.Add((IngredientDetails.Material)scripObjects[i]);
         }
+        ingredientInstructions.Add(new IngredientInstruction(testMaterial, new ProcessingLevels(testGrindLevel, testTemperatureLevel, testCuttingLevel)));
     }
     // Update is called once per frame
     void Update()
@@ -45,21 +52,49 @@ public class Cauldron : MonoBehaviour
                 {
                     if(_mouseFollower.ingredientBeingCarried != null)
                     {
-                        receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
-                        _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
-                        _mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
-                        _mouseFollower.ingredientBeingCarried = null;
+                        AddIngredient(_mouseFollower.ingredientBeingCarried);
                     }
                 }
             }
         }
     }
 
-    public void GenerateExpectedIngredients(ClientRequest requests)
+
+    public void AddIngredient(Ingredient toAdd)
     {
-        for(int i = 0; i < requests.Request_required_ingredients.Count; i++)
+        float result = EvaluateIngredient(ingredientInstructions[ingredientInstructions.Count - 1], _mouseFollower.ingredientBeingCarried);
+        Debug.Log(result);
+        finalResult += result;
+        receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
+        _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
+        _mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
+        _mouseFollower.ingredientBeingCarried = null;
+    }
+
+    public float FinishBrewing()
+    {
+        float toReturn = finalResult;
+        ResetCauldron();
+        return toReturn;
+    }
+
+    public void ResetCauldron()
+    {
+        ingredientInstructions = new();
+        for(int i = 0; i < receivedIngredients.Count; i++)
         {
-            var (Emotion, Severity) = requests.Request_required_ingredients[i];
+            Destroy(receivedIngredients[i].gameObject);
+        }
+        receivedIngredients = new();
+        finalResult = 0f;
+    }
+
+    public void SetExpectedIngredients(ClientRequest request)
+    {
+        ResetCauldron();
+        for(int i = 0; i < request.Request_required_ingredients.Count; i++)
+        {
+            var (Emotion, Severity) = request.Request_required_ingredients[i];
             for(int j = 0; j < _materials.Count; j++)
             {
                 if(_materials[i].emotion == Emotion && _materials[i].severity == Severity)

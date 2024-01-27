@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: {fileID: 7048021794343309273, guid: 6e3d64e56de35f747970d688949d31a0, type: 3}
+  material: {fileID: 11400000, guid: 21ff60574d9a03545a856b297cb6451e, type: 2}
 --- !u!1 &1145390883
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +506,10 @@ MonoBehaviour:
   cutMarginOfError: 0.05
   incorrectSeverityMultiplier: 0.5
   receivedIngredients: []
+  testMaterial: {fileID: 11400000, guid: 21ff60574d9a03545a856b297cb6451e, type: 2}
+  testGrindLevel: 1
+  testTemperatureLevel: 1
+  testCuttingLevel: 0.8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
