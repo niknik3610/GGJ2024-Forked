@@ -234,8 +234,8 @@ Transform:
   m_GameObject: {fileID: 650808242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0334, y: -3.2161, z: 0}
-  m_LocalScale: {x: 1.3013752, y: 5.2103, z: 1}
+  m_LocalPosition: {x: 2.23, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895076959}
@@ -457,7 +457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: {fileID: 1895076960}
-  splitIngredient: {fileID: 0}
   slicer: {fileID: 1506612673}
 --- !u!4 &1494752354
 Transform:
@@ -506,8 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1e5aa9c2ad870a58664e0bb3e09b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenIngredientPartOne: {fileID: 650808244}
-  hiddenIngredientPartTwo: {fileID: 0}
+  ingredientOneMask: {fileID: 650808244}
 --- !u!4 &1506612674
 Transform:
   m_ObjectHideFlags: 0
@@ -714,6 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab702366542ede4abd5c1b46432928c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 0}
 --- !u!65 &1895076961
 BoxCollider:
   m_ObjectHideFlags: 0
