@@ -5,7 +5,6 @@ public class CuttingBoardMinigame : MonoBehaviour
 {
     Camera mainCamera; 
     public Ingredient ingredient;
-    public GameObject splitIngredient;
     public Slicer slicer;
 
     void Awake() {
@@ -15,7 +14,6 @@ public class CuttingBoardMinigame : MonoBehaviour
     void Start()
     {
         slicer.HideMasks();
-        splitIngredient.SetActive(false);
     }
 
     // Update is called once per frame
