@@ -326,9 +326,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 499196144}
-        m_TargetAssemblyTypeName: CutterTemp, Assembly-CSharp
-        m_MethodName: Cut
+      - m_Target: {fileID: 1509740751}
+        m_TargetAssemblyTypeName: Cauldron, Assembly-CSharp
+        m_MethodName: FinishBrewing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
