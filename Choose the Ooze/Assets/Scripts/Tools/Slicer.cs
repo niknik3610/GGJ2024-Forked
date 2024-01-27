@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Slicer : MonoBehaviour
 { 
-    public SpriteMask ingredientOneMask;
     const int PART_OFF_SET = 10;
 
     //returns the percentage of the left piece of the ingredient
-    public float Slice(float slicePointX, Ingredient ingredient)
+    public float Slice(float slicePointX, Ingredient ingredient, SpriteMask ingredientOneMask)
     {
+        Vector2 aspectRatio = new Vector2(2, 2);
+
         SpriteRenderer ingrRenderer = ingredient.GetComponent<SpriteRenderer>();
         float ingrWidth = ingrRenderer.bounds.size.x;
         float ingrHeight = ingrRenderer.bounds.size.y;
@@ -20,7 +21,7 @@ public class Slicer : MonoBehaviour
             ingredient.transform.position.y
         );
 
-        maskTransform.localScale = new Vector3(1, 2);
+        maskTransform.localScale = aspectRatio;
 
         float leftBoundIngr = Math.Abs(ingredient.transform.position.x) - (ingrWidth / 2); //left most point
         float localLocationSlicePointX = Math.Abs(slicePointX) - leftBoundIngr;
@@ -29,8 +30,8 @@ public class Slicer : MonoBehaviour
         float scaleForSecondPartWidth = 1 - ingrLeftPercent;
 
         maskTransform.localScale = new Vector3(
-            1,
-            -1 * scaleForSecondPartWidth * 2
+            aspectRatio.y,
+            -1 * aspectRatio.x * scaleForSecondPartWidth
         );
 
         Vector3 cutPos = new Vector3(slicePointX - (scaleForSecondPartWidth * ingrWidth / 2), maskTransform.transform.position.y, 0);
@@ -49,23 +50,23 @@ public class Slicer : MonoBehaviour
 
         cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
 
-        SpriteMask partMask = cutPiece.GetComponentInChildren<SpriteMask>();
+        SpriteMask partMask = UnityEngine.Object.Instantiate(ingredientOneMask, new Vector3(), Quaternion.identity);
+        partMask.transform.rotation *= Quaternion.Euler(0, 0, -90);
 
-        partMask.gameObject.transform.localScale = new Vector3(1, 2);
+        partMask.gameObject.transform.localScale = aspectRatio;
         partMask.gameObject.transform.localScale = new Vector3(
-            1,
-            -1 * ingrLeftPercent * 2
+            aspectRatio.y,
+            -1 * aspectRatio.x * ingrLeftPercent
         );
 
         partMask.gameObject.transform.position = new Vector3(
             slicePointX + PART_OFF_SET + (ingrLeftPercent * ingrWidth / 2),
-            partMask.transform.position.y
+            Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y + ingredientOneMask.bounds.size.y / 2
         );
 
         return ingrLeftPercent;
     }
 
    public void HideMasks() {
-        ingredientOneMask.gameObject.SetActive(false);
    }
 }
