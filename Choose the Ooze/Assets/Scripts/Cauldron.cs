@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using IngredientDetails;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,17 +19,20 @@ public class Cauldron : MonoBehaviour
     public float incorrectSeverityMultiplier;
     public List<IngredientInstruction> ingredientInstructions = new ();
     public List<Ingredient> receivedIngredients = new();
-    private Camera m_Camera;
+    private Camera _camera;
     private float finalResult = 0f;
+    public TemperatureLevel temperatureLevel = TemperatureLevel.None;
 
     public IngredientDetails.Material testMaterial;
     public GrindLevel testGrindLevel;
     public TemperatureLevel testTemperatureLevel;
     public float testCuttingLevel;
+    public TextMeshProUGUI temperatureText;
+
     void Awake()
     {
         _mouseFollower = FindObjectOfType<MouseFollower>();
-        m_Camera = Camera.main;
+        _camera = Camera.main;
         UnityEngine.Object[] scripObjects = Resources.LoadAll("", typeof(IngredientDetails.Material));
         for(int i = 0; i < scripObjects.Length; i++)
         {
@@ -44,7 +48,7 @@ public class Cauldron : MonoBehaviour
         if (mouse.leftButton.wasPressedThisFrame)
         {
             Vector3 mousePosition = mouse.position.ReadValue();
-            Ray ray = m_Camera.ScreenPointToRay(mousePosition);
+            Ray ray = _camera.ScreenPointToRay(mousePosition);
             var raycastHits = Physics.RaycastAll(ray);
             foreach(var rhit in raycastHits)
             {
@@ -57,11 +61,62 @@ public class Cauldron : MonoBehaviour
                 }
             }
         }
+        switch (temperatureLevel)
+        {
+            case TemperatureLevel.None:
+                temperatureText.text = "Current Temp: None";
+                break;
+            case TemperatureLevel.Low:
+                temperatureText.text = "Current Temp: Low";
+                break;
+            case TemperatureLevel.Medium:
+                temperatureText.text = "Current Temp: Medium";
+                break;
+            case TemperatureLevel.High:
+                temperatureText.text = "Current Temp: High";
+                break;
+        }
     }
 
 
+    public void IncreaseTemperature()
+    {
+        switch (temperatureLevel)
+        {
+            case TemperatureLevel.None:
+                temperatureLevel = TemperatureLevel.Low;
+                break;
+            case TemperatureLevel.Low:
+            temperatureLevel = TemperatureLevel.Medium;
+                break;
+            case TemperatureLevel.Medium:
+                temperatureLevel = TemperatureLevel.High;
+                break;
+            case TemperatureLevel.High:
+                break;
+        }
+    }
+    public void DecreaseTemperature()
+    {
+        switch (temperatureLevel)
+        {
+            case TemperatureLevel.None:
+                break;
+            case TemperatureLevel.Low:
+                temperatureLevel = TemperatureLevel.None;
+                break;
+            case TemperatureLevel.Medium:
+                temperatureLevel = TemperatureLevel.Low;
+                break;
+            case TemperatureLevel.High:
+                temperatureLevel = TemperatureLevel.Medium;
+                break;
+        }
+    }
+
     public void AddIngredient(Ingredient toAdd)
     {
+        toAdd.currentLevels.temperatureLevel = temperatureLevel;
         float result = EvaluateIngredient(ingredientInstructions[ingredientInstructions.Count - 1], _mouseFollower.ingredientBeingCarried);
         Debug.Log(result);
         finalResult += result;
