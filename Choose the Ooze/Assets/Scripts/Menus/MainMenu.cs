@@ -16,11 +16,11 @@ public class MainMenu : MonoBehaviour
     public void LaunchAboutMenu(){
         Debug.Log("Start about menu");
         aboutMenu.SetActive(true);
-        gameObject.SetActive(false)
+        gameObject.SetActive(false);
     }
 
     public void LaunchGame(){
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
  
     public void QuitGame(){
