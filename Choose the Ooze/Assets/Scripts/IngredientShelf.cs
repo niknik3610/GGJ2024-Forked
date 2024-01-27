@@ -19,21 +19,28 @@ public class IngredientShelf : MonoBehaviour
     void Update()
     {
         Mouse mouse = Mouse.current;
+        
         if (mouse.leftButton.wasPressedThisFrame)
         {
             Vector3 mousePosition = mouse.position.ReadValue();
-            Ray ray = m_Camera.ScreenPointToRay(mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+            var raycastHits = Physics.RaycastAll(ray);
+            foreach(var rhit in raycastHits)
             {
-                if(hit.collider.gameObject == this.gameObject)
+                if(rhit.collider.gameObject == gameObject)
                 {
-                    if(_mouseFollower.ingredientBeingCarried == null && _mouseFollower.ingredientInProcess == false)
+                    if(_mouseFollower.ingredientInProcess == false)
                     {
-                        GameObject ingredientInstance = Instantiate(ingredient, new Vector3(0, 0, 0), Quaternion.identity, _mouseFollower.transform);
-                        ingredientInstance.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);
-                        _mouseFollower.ingredientBeingCarried = ingredientInstance.GetComponent<Ingredient>();
-                        _mouseFollower.ingredientBeingCarried.currentLevels = new ProcessingLevels(false);
-                        _mouseFollower.ingredientBeingCarried.material = material;
+                            GameObject ingredientInstance = Instantiate(ingredient, new Vector3(0, 0, 0), Quaternion.identity, _mouseFollower.transform);
+                            ingredientInstance.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);
+                            if(_mouseFollower.ingredientBeingCarried != null)
+                            {
+                                Destroy(_mouseFollower.ingredientBeingCarried.gameObject);
+
+                            }
+                            _mouseFollower.ingredientBeingCarried = ingredientInstance.GetComponent<Ingredient>();
+                            _mouseFollower.ingredientBeingCarried.currentLevels = new ProcessingLevels(false);
+                            _mouseFollower.ingredientBeingCarried.material = material;
                     }
                 }
             }
