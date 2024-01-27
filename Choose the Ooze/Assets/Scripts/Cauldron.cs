@@ -23,8 +23,9 @@ public class Cauldron : MonoBehaviour
     private Camera _camera;
     private float finalResult = 0f;
     private ClientRequestGenerator requestGenerator;
-    public TemperatureLevel temperatureLevel = TemperatureLevel.None;
+    public TemperatureLevel temperatureLevel = TemperatureLevel.TooCold;
     public TextMeshProUGUI temperatureText;
+    public IngredientsPanel ingredientsPanel;
 
     void Awake()
     {
@@ -61,8 +62,8 @@ public class Cauldron : MonoBehaviour
         }
         switch (temperatureLevel)
         {
-            case TemperatureLevel.None:
-                temperatureText.text = "Current Temp: None";
+            case TemperatureLevel.TooCold:
+                temperatureText.text = "Current Temp: Cold";
                 break;
             case TemperatureLevel.Low:
                 temperatureText.text = "Current Temp: Low";
@@ -73,8 +74,11 @@ public class Cauldron : MonoBehaviour
             case TemperatureLevel.High:
                 temperatureText.text = "Current Temp: High";
                 break;
+            case TemperatureLevel.TooHot:
+                temperatureText.text = "Current Temp: Too hot!";
+                break;
         }
-        if(ingredientInstructions.Count == 0)
+        if (ingredientInstructions.Count == 0)
         {
             SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
         }
@@ -85,16 +89,19 @@ public class Cauldron : MonoBehaviour
     {
         switch (temperatureLevel)
         {
-            case TemperatureLevel.None:
+            case TemperatureLevel.TooCold:
                 temperatureLevel = TemperatureLevel.Low;
                 break;
             case TemperatureLevel.Low:
-            temperatureLevel = TemperatureLevel.Medium;
+                temperatureLevel = TemperatureLevel.Medium;
                 break;
             case TemperatureLevel.Medium:
                 temperatureLevel = TemperatureLevel.High;
                 break;
             case TemperatureLevel.High:
+                temperatureLevel = TemperatureLevel.TooHot;
+                break;
+            case TemperatureLevel.TooHot:
                 break;
         }
     }
@@ -102,16 +109,19 @@ public class Cauldron : MonoBehaviour
     {
         switch (temperatureLevel)
         {
-            case TemperatureLevel.None:
+            case TemperatureLevel.TooCold:
                 break;
             case TemperatureLevel.Low:
-                temperatureLevel = TemperatureLevel.None;
+                temperatureLevel = TemperatureLevel.TooCold;
                 break;
             case TemperatureLevel.Medium:
                 temperatureLevel = TemperatureLevel.Low;
                 break;
             case TemperatureLevel.High:
                 temperatureLevel = TemperatureLevel.Medium;
+                break;
+            case TemperatureLevel.TooHot:
+                temperatureLevel = TemperatureLevel.High;
                 break;
         }
     }
@@ -148,6 +158,7 @@ public class Cauldron : MonoBehaviour
     public void ResetCauldron()
     {
         ingredientInstructions = new();
+        ingredientsPanel.clearEntries();
         for(int i = 0; i < receivedIngredients.Count; i++)
         {
             Destroy(receivedIngredients[i].gameObject);
@@ -178,6 +189,7 @@ public class Cauldron : MonoBehaviour
                 Debug.Log("ERROR: COULD NOT FIND MATERIAL: " + Emotion + " " + Severity);
             }
         }
+        ingredientsPanel.UpdateInstructionList(ingredientInstructions);
     }
 
     public float EvaluateIngredient(IngredientInstruction expected, Ingredient received)
