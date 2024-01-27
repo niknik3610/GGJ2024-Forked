@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HeatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+public class CoolButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
  
     public bool buttonPressed;
 
@@ -30,7 +30,7 @@ public class HeatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
         }
         else
         {
-            if(cauldron.currentChangeRate > 0 - cauldron.defaultTemperatureDecreasePerSecond)
+            if(cauldron.currentChangeRate < 0 - cauldron.defaultTemperatureDecreasePerSecond)
             {
                 cauldron.currentChangeRate -= changeRateDecreaseOffPress * Time.deltaTime;
             }

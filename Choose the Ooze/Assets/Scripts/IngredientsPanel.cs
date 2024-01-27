@@ -19,31 +19,6 @@ public class IngredientsPanel : MonoBehaviour
         string text;
         for(int i = 0; i < instructions.Count; i++)
         {
-            if(instructions[i].requiredLevels.temperatureLevel != lastLevel)
-            {
-                text = "Set temperature to ";
-                switch (instructions[i].requiredLevels.temperatureLevel)
-                {
-                    case TemperatureLevel.TooCold:
-                        text += "cold";
-                        break;
-                    case TemperatureLevel.Low:
-                        text += "low";
-                        break;
-                    case TemperatureLevel.Medium:
-                        text += "medium";
-                        break;
-                    case TemperatureLevel.High:
-                        text += "high";
-                        break;
-                    case TemperatureLevel.TooHot:
-                        text += "too hot(?)";
-                        break;
-                }
-                AddNewEntry(text);
-                lastLevel = instructions[i].requiredLevels.temperatureLevel;
-            }
-                
             char c = instructions[i].material.ingredientName.ToCharArray()[0];
             bool isVowel = "aeioAEIO".IndexOf(c) >= 0;
             if(isVowel)
@@ -83,6 +58,30 @@ public class IngredientsPanel : MonoBehaviour
                         break;
                 }
                 AddNewEntry(text);
+            }
+            if(instructions[i].requiredLevels.temperatureLevel != lastLevel)
+            {
+                text = "Set temperature to ";
+                switch (instructions[i].requiredLevels.temperatureLevel)
+                {
+                    case TemperatureLevel.TooCold:
+                        text += "cold";
+                        break;
+                    case TemperatureLevel.Low:
+                        text += "low";
+                        break;
+                    case TemperatureLevel.Medium:
+                        text += "medium";
+                        break;
+                    case TemperatureLevel.High:
+                        text += "high";
+                        break;
+                    case TemperatureLevel.TooHot:
+                        text += "too hot(?)";
+                        break;
+                }
+                AddNewEntry(text);
+                lastLevel = instructions[i].requiredLevels.temperatureLevel;
             }
             AddNewEntry("Put in cauldron");
         }
