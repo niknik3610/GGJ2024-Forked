@@ -48,14 +48,16 @@ public class CutterTemp : MonoBehaviour
                     if(_mouseFollower.ingredientBeingCarried != null && ingredientInProcess == null)
                     {
                         ingredientInProcess = _mouseFollower.ingredientBeingCarried;
-                        _mouseFollower.ingredientBeingCarried.transform.SetParent(gameObject.transform, false);
+                        _mouseFollower.ingredientBeingCarried.transform.SetParent(gameObject.transform);
+                        ingredientInProcess.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);
                         _mouseFollower.ingredientInProcess = true;
                         _mouseFollower.ingredientBeingCarried = null;
                     }
                     else if(_mouseFollower.ingredientBeingCarried == null && ingredientInProcess != null)
                     {
                         _mouseFollower.ingredientBeingCarried = ingredientInProcess;
-                        ingredientInProcess.transform.SetParent(_mouseFollower.transform, false);
+                        ingredientInProcess.transform.SetParent(_mouseFollower.transform);
+                        ingredientInProcess.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);
                         _mouseFollower.ingredientInProcess = false;
                         ingredientInProcess = null;
                     }

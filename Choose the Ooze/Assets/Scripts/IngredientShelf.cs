@@ -29,7 +29,8 @@ public class IngredientShelf : MonoBehaviour
                 {
                     if(_mouseFollower.ingredientBeingCarried == null && _mouseFollower.ingredientInProcess == false)
                     {
-                        GameObject ingredientInstance = Instantiate(ingredient, new Vector3(), Quaternion.identity, _mouseFollower.transform);
+                        GameObject ingredientInstance = Instantiate(ingredient, new Vector3(0, 0, 0), Quaternion.identity, _mouseFollower.transform);
+                        ingredientInstance.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);
                         _mouseFollower.ingredientBeingCarried = ingredientInstance.GetComponent<Ingredient>();
                         _mouseFollower.ingredientBeingCarried.currentLevels = new ProcessingLevels(false);
                         _mouseFollower.ingredientBeingCarried.material = material;
