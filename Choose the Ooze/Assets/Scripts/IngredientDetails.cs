@@ -19,5 +19,6 @@ namespace IngredientDetails
         public uint cost;
         public Emotion emotion;
         public Severity severity;
+        public float weight;
     }
 }
