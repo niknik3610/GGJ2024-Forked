@@ -117,7 +117,16 @@ public class Cauldron : MonoBehaviour
     public void AddIngredient(Ingredient toAdd)
     {
         toAdd.currentLevels.temperatureLevel = temperatureLevel;
-        float result = EvaluateIngredient(ingredientInstructions[ingredientInstructions.Count - 1], _mouseFollower.ingredientBeingCarried);
+        if(ingredientInstructions.Count == 0) 
+        {
+            receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
+            _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
+            _mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
+            _mouseFollower.ingredientBeingCarried = null;
+            return;
+        }
+        float result = EvaluateIngredient(ingredientInstructions[0], _mouseFollower.ingredientBeingCarried);
+        ingredientInstructions.RemoveAt(0);
         Debug.Log(result);
         finalResult += result;
         receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
@@ -126,11 +135,11 @@ public class Cauldron : MonoBehaviour
         _mouseFollower.ingredientBeingCarried = null;
     }
 
-    public float FinishBrewing()
+    public void FinishBrewing()
     {
         float toReturn = finalResult;
         ResetCauldron();
-        return toReturn;
+        Debug.Log(toReturn);
     }
 
     public void ResetCauldron()
