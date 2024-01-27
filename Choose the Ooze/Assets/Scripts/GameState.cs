@@ -11,6 +11,9 @@ public class GameState : MonoBehaviour
     [SerializeField] private Camera _camera;
 
     private float _cameraSpeed = 10;
+
+    public Animator transition;
+    public float transitionTime = 1f;
     
     
     public enum State
@@ -18,7 +21,6 @@ public class GameState : MonoBehaviour
         Workshop,
         Cutting,
         Grinding,
-        Cooking,
         Selling,
     }
 
@@ -45,15 +47,17 @@ public class GameState : MonoBehaviour
         if (!_cameraSettled)
         {
             Vector3 target = _stateCameraPositions[(int) _activeState].position;
-            Vector3 position = _camera.transform.position;
-            _camera.transform.position = Vector3.Lerp(position, target, _cameraSpeed * Time.deltaTime);
+            target.z = -10;
+            _camera.transform.position = target;
             _cameraSettled = _camera.transform.position.Equals(target);
             return;
         }
     }
 
-    private void perform_transition(State state)
+    private IEnumerator perform_transition(State state)
     {
+        transition.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
         _activeState = state;
         _cameraSettled = false;
     }
@@ -67,7 +71,7 @@ public class GameState : MonoBehaviour
         switch (_activeState)
         {
             case State.Workshop:
-                perform_transition(nextState);
+                StartCoroutine(perform_transition(nextState));
                 break;
             case State.Cutting:
                 switch (nextState)
@@ -78,15 +82,11 @@ public class GameState : MonoBehaviour
                         break;
                     case State.Grinding:
                         break;
-                    case State.Cooking:
-                        break;
                     case State.Selling:
                         break;
                 }
                 break;
             case State.Grinding:
-                break;
-            case State.Cooking:
                 break;
             case State.Selling:
                 break;
