@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ClientRequestGenerator
 {
-    Queue<ClientRequest> generateRequests(SpecialClient)
+    Queue<ClientRequest> generateRequests(SpecialClientType clientType)
     {
-
+        return new Queue<ClientRequest>();
     }
 }
