@@ -6,7 +6,6 @@ public class Ingredient : MonoBehaviour
     public string ingredientName {get; set;}
     public bool beingCarried {get; set;} = false;
     private Camera m_Camera;
-    public Slicer slicer;
 
     void Awake()
     {
