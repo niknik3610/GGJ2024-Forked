@@ -41,49 +41,50 @@ public class IngredientsPanel : MonoBehaviour
                         break;
                 }
                 AddNewEntry(text);
-                
-                char c = instructions[i].material.ingredientName.ToCharArray()[0];
-                bool isVowel = "aeiouAEIOU".IndexOf(c) >= 0;
-                if(isVowel)
-                {
-                    text = "Take an ";
-                }
-                else text = "Take a ";
-                text += instructions[i].material.ingredientName + ":";
-                
-                AddNewEntry(text);
-                if(Math.Abs(instructions[i].requiredLevels.cuttingLevel-1) > 0.001f)
-                {
-                    float cutoff = 1-instructions[i].requiredLevels.cuttingLevel;
-                    text = "Cut off " + cutoff.ToString("0.0");
-                    AddNewEntry(text);
-                }
-                if(instructions[i].requiredLevels.grindLevel != GrindLevel.None)
-                {
-                    text = "Grind it to ";
-                    switch (instructions[i].requiredLevels.grindLevel)
-                    {
-                        case GrindLevel.None:
-                            text += "none(?)";
-                            break;
-                        case GrindLevel.Low:
-                            text += "low";
-                            break;
-                        case GrindLevel.Medium:
-                            text += "medium";
-                            break;
-                        case GrindLevel.High:
-                            text += "high";
-                            break;
-                        default:
-                            Debug.Log("Why are we here?");
-                            Debug.Log(instructions[i].requiredLevels.grindLevel);
-                            break;
-                    }
-                    AddNewEntry(text);
-                }
-                AddNewEntry("Put in cauldron");
+                lastLevel = instructions[i].requiredLevels.temperatureLevel;
             }
+                
+            char c = instructions[i].material.ingredientName.ToCharArray()[0];
+            bool isVowel = "aeioAEIO".IndexOf(c) >= 0;
+            if(isVowel)
+            {
+                text = "Take an ";
+            }
+            else text = "Take a ";
+            text += instructions[i].material.ingredientName + ":";
+            
+            AddNewEntry(text);
+            if(Math.Abs(instructions[i].requiredLevels.cuttingLevel-1) > 0.001f)
+            {
+                float cutoff = 1-instructions[i].requiredLevels.cuttingLevel;
+                text = "Cut off " + cutoff.ToString("0.0");
+                AddNewEntry(text);
+            }
+            if(instructions[i].requiredLevels.grindLevel != GrindLevel.None)
+            {
+                text = "Grind it to ";
+                switch (instructions[i].requiredLevels.grindLevel)
+                {
+                    case GrindLevel.None:
+                        text += "none(?)";
+                        break;
+                    case GrindLevel.Low:
+                        text += "low";
+                        break;
+                    case GrindLevel.Medium:
+                        text += "medium";
+                        break;
+                    case GrindLevel.High:
+                        text += "high";
+                        break;
+                    default:
+                        Debug.Log("Why are we here?");
+                        Debug.Log(instructions[i].requiredLevels.grindLevel);
+                        break;
+                }
+                AddNewEntry(text);
+            }
+            AddNewEntry("Put in cauldron");
         }
         AddNewEntry("Whisper happy thoughts!");
     }
