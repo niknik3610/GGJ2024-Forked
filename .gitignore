@@ -1,5 +1,8 @@
-# Visual Studio generated files
-.vs
+# Visual Studio 
+# cache directory
+**/.vs
+# config file
+**/.vsconfig
 
 # dotconfig directories
 **/.config
