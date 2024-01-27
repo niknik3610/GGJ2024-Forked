@@ -6,3 +6,6 @@
 
 # dotconfig directories
 **/.config
+
+# VSCode dir
+**/.vscode
