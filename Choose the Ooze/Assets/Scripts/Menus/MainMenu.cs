@@ -8,9 +8,15 @@ public class MainMenu : MonoBehaviour
     public GameObject aboutMenu;
 
     void Awake(){   
+        Debug.Log("Start main menu");
         gameObject.SetActive(true);
         aboutMenu.SetActive(false);
-        Debug.Log("Start main menu");
+    }
+
+    public void LaunchAboutMenu(){
+        Debug.Log("Start about menu");
+        aboutMenu.SetActive(true);
+        gameObject.SetActive(false)
     }
 
     public void LaunchGame(){
