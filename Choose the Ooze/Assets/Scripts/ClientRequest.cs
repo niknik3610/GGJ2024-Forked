@@ -8,4 +8,7 @@ public enum Severity
     High,
 }
 
-public record ClientRequest(List<(IngredientDetails.Emotion, Severity)> Request_required_ingredients);
+public class ClientRequest
+{
+    List<(IngredientDetails.Emotion, Severity)> Request_required_ingredients;
+}
