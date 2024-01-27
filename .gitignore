@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 **/.vs/
 **/.vsconfig/
+=======
+# Visual Studio generated files
+.vs
+
+# dotconfig directories
+**/.config
+>>>>>>> 097d061f369158d50c2429eaff00bfd51415ad39

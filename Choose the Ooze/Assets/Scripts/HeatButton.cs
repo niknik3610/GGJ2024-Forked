@@ -19,6 +19,7 @@ public class HeatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
     public void OnPointerUp(PointerEventData eventData){
         Debug.Log("Released Button");
         buttonPressed = false;
+        StartCoroutine("disableButton");
     }
 
     void Update()
@@ -29,19 +30,18 @@ public class HeatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
         }
         else
         {
-            if(cauldron.currentChangeRate < 0 - cauldron.defaultTemperatureDecreasePerSecond)
-            {
-                cauldron.currentChangeRate = 0 - cauldron.defaultTemperatureDecreasePerSecond;
-            }
-            else if(cauldron.currentChangeRate > 0 - cauldron.defaultTemperatureDecreasePerSecond)
+            if(cauldron.currentChangeRate > 0 - cauldron.defaultTemperatureDecreasePerSecond)
             {
                 cauldron.currentChangeRate -= changeRateDecreaseOffPress * Time.deltaTime;
             }
         }
     }
 
-    /*public IEnumerator disableButton()
+    public IEnumerator disableButton()
     {
         Button button = GetComponent<Button>();
-    }*/
+        button.interactable = false;
+        yield return new WaitForSeconds(1);
+        button.interactable = true;
+    }
 }

@@ -14,22 +14,25 @@ public class Cauldron : MonoBehaviour
     public float strongPotionMultiplier;
     public float incorrectGrindStagePenalty;
     public float incorrectHeatStagePenalty;
+    public float heatStageChangeMarginSeconds;
+    public TemperatureLevel expectedTemperature = TemperatureLevel.TooCold;
     public float incorrectCutMultiplier;
     public float cutMarginOfError;
     public float incorrectSeverityMultiplier;
-    public List<IngredientInstruction> ingredientInstructions = new ();
-    private int currentIngredientIndex = 0;
-    public List<Ingredient> receivedIngredients = new();
-    private Camera _camera;
-    private float finalResult = 0f;
-    private ClientRequestGenerator requestGenerator;
     public float temperatureLevel = 0;
     public float defaultTemperatureDecreasePerSecond;
     public float currentChangeRate;
 
     public TemperatureBar temperatureBar;
-    public TextMeshProUGUI temperatureText;
     public IngredientsPanel ingredientsPanel;
+    private List<IngredientInstruction> ingredientInstructions = new ();
+    private int currentIngredientIndex = 0;
+    public List<Ingredient> receivedIngredients = new();
+    private Camera _camera;
+    private float finalResult = 0f;
+    private ClientRequestGenerator requestGenerator;
+
+    private TemperatureLevel prevFrameTemperatureLevel;
 
     void Awake()
     {
@@ -43,6 +46,7 @@ public class Cauldron : MonoBehaviour
         }
         requestGenerator = new ClientRequestGenerator();
         SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
+        prevFrameTemperatureLevel = ingredientInstructions[0].requiredLevels.temperatureLevel;
     }
     // Update is called once per frame
     void Update()
@@ -66,29 +70,12 @@ public class Cauldron : MonoBehaviour
             }
         }
         temperatureBar.setSliderValue(temperatureLevel);
-        switch (temperatureFloatToLevel(temperatureLevel))
-        {
-            case TemperatureLevel.TooCold:
-                temperatureText.text = "Current Temp: Cold";
-                break;
-            case TemperatureLevel.Low:
-                temperatureText.text = "Current Temp: Low";
-                break;
-            case TemperatureLevel.Medium:
-                temperatureText.text = "Current Temp: Medium";
-                break;
-            case TemperatureLevel.High:
-                temperatureText.text = "Current Temp: High";
-                break;
-            case TemperatureLevel.TooHot:
-                temperatureText.text = "Current Temp: Too hot!";
-                break;
-        }
         if (ingredientInstructions.Count == 0)
         {
             SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
         }
-        if(temperatureLevel > 0)
+        StartCoroutine("prevFrameTemperatureCheck");
+        if((temperatureLevel > 0 || currentChangeRate > 0) && (temperatureLevel < 1 || currentChangeRate < 0))
         {
             temperatureLevel += currentChangeRate * Time.deltaTime;
         }
@@ -108,6 +95,11 @@ public class Cauldron : MonoBehaviour
         }
         float result = EvaluateIngredient(ingredientInstructions[currentIngredientIndex], _mouseFollower.ingredientBeingCarried);
         currentIngredientIndex++;
+        if(currentIngredientIndex > 0)
+        {
+            expectedTemperature = ingredientInstructions[currentIngredientIndex - 1].requiredLevels.temperatureLevel;
+        }
+
         Debug.Log(result);
         finalResult += result;
         receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
@@ -158,6 +150,7 @@ public class Cauldron : MonoBehaviour
             }
         }
         ingredientsPanel.UpdateInstructionList(ingredientInstructions);
+        expectedTemperature = ingredientInstructions[0].requiredLevels.temperatureLevel;
     }
 
     public float EvaluateIngredient(IngredientInstruction expected, Ingredient received)
@@ -169,10 +162,6 @@ public class Cauldron : MonoBehaviour
         result -= Math.Abs(
             (int)expected.requiredLevels.grindLevel - (int)received.currentLevels.grindLevel
         ) * incorrectGrindStagePenalty;
-
-        result -= Math.Abs(
-            (int)expected.requiredLevels.temperatureLevel - (int)received.currentLevels.temperatureLevel
-        ) * incorrectHeatStagePenalty;
 
         if(Math.Abs(expected.requiredLevels.cuttingLevel - received.currentLevels.cuttingLevel) > cutMarginOfError)
         {
@@ -197,5 +186,39 @@ public class Cauldron : MonoBehaviour
         if(level < 0.625) return TemperatureLevel.Medium;
         if(level < 0.875) return TemperatureLevel.High;
         return TemperatureLevel.TooHot;
+    }
+    public void OnTemperatureLevelChanged()
+    {
+        StartCoroutine("checkTemperature");
+    }
+
+    public IEnumerator prevFrameTemperatureCheck()
+    {
+        while(true)
+        {
+            if(temperatureFloatToLevel(temperatureLevel) != prevFrameTemperatureLevel)
+            {
+                OnTemperatureLevelChanged();
+                prevFrameTemperatureLevel = temperatureFloatToLevel(temperatureLevel);
+                yield return new WaitForSeconds(0.2f);
+            }
+            prevFrameTemperatureLevel = temperatureFloatToLevel(temperatureLevel);
+            yield return null;
+        }
+    }
+    public IEnumerator checkTemperature()
+    {
+        Debug.Log("fired1");
+        if(expectedTemperature != ingredientInstructions[currentIngredientIndex].requiredLevels.temperatureLevel)
+        {
+            Debug.Log("fired2");
+            int curIndex = currentIngredientIndex;
+            yield return new WaitForSeconds(heatStageChangeMarginSeconds);
+            if(curIndex == currentIngredientIndex)
+            {
+                finalResult -= incorrectHeatStagePenalty;
+                Debug.Log("Temperature penalty applied");
+            }
+        }
     }
 }
