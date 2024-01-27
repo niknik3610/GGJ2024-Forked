@@ -179,6 +179,7 @@ public class Cauldron : MonoBehaviour
         {
             result -= Math.Abs(expected.requiredLevels.cuttingLevel - received.currentLevels.cuttingLevel) * incorrectCutMultiplier;
         }
+        if(result < 0) return 0;
         if(expected.material.severity != received.material.severity)
         {
             result *= incorrectSeverityMultiplier;

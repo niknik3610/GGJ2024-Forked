@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 46922633}
   - component: {fileID: 46922637}
   m_Layer: 0
-  m_Name: Ingredient Shelf
+  m_Name: Cheese shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
