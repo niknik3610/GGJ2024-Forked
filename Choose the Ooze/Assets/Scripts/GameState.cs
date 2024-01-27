@@ -1,16 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions;
-using static UnityEngine.GraphicsBuffer;
 
 public class GameState : MonoBehaviour
 {
     private State _activeState;
     private bool _cameraSettled = true;
-    [SerializeField] private Vector3[] _stateCameraPositions;
+    [SerializeField] private Transform[] _stateCameraPositions;
     [SerializeField] private Camera _camera;
 
     private float _cameraSpeed = 10;
@@ -24,11 +21,16 @@ public class GameState : MonoBehaviour
         Cooking,
         Selling,
     }
+
+    static GameState instance;
+    public static GameState getInstance() { return instance; }
+
     void Start()
     {
+        instance = this;
         if (_stateCameraPositions.Length != Enum.GetNames(typeof(State)).Length)
         {
-            _stateCameraPositions = new Vector3[Enum.GetNames(typeof(State)).Length];
+            _stateCameraPositions = new Transform[Enum.GetNames(typeof(State)).Length];
             for (int i = 0; i < _stateCameraPositions.Length; i++)
             {
                 _stateCameraPositions[i] = _stateCameraPositions[0];
@@ -36,18 +38,17 @@ public class GameState : MonoBehaviour
             throw new Exception("Not enough camera positions");
         }
         _activeState = State.Workshop;
-        _camera = GetComponent<Camera>();
     }
 
     private void Update()
     {
         if (!_cameraSettled)
         {
-
-            Vector3 target = _stateCameraPositions[(int) _activeState];
+            Vector3 target = _stateCameraPositions[(int) _activeState].position;
             Vector3 position = _camera.transform.position;
             _camera.transform.position = Vector3.Lerp(position, target, _cameraSpeed * Time.deltaTime);
             _cameraSettled = _camera.transform.position.Equals(target);
+            return;
         }
     }
 
@@ -57,9 +58,12 @@ public class GameState : MonoBehaviour
         _cameraSettled = false;
     }
 
-    public void attemptTransition(State nextState, MouseFollower heldItem)
+    public void attemptTransition(State nextState)
     {
         if (!_cameraSettled) return;
+
+        Ingredient heldItem = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
+
         switch (_activeState)
         {
             case State.Workshop:
