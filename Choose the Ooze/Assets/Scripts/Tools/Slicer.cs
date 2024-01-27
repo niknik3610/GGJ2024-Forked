@@ -63,7 +63,6 @@ public class Slicer : MonoBehaviour
         );
 
         return ingrLeftPercent;
-        return 0.0f;
     }
 
    public void HideMasks() {
