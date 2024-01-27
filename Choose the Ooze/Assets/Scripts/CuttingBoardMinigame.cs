@@ -4,16 +4,21 @@ using UnityEngine.InputSystem;
 public class CuttingBoardMinigame : MonoBehaviour
 {
     Camera mainCamera; 
-    public Ingredient ingredient;
     public Slicer slicer;
+    public Ingredient ingredient;
+    public MouseFollower mouseFollower;
+    public SpriteMask mask;
+
 
     void Awake() {
+        ingredient.gameObject.transform.SetParent(this.transform);
+        ingredient.gameObject.transform.position = new Vector3(-5, -2f);
         mainCamera = Camera.main;
     }
     // Start is called before the first frame update
     void Start()
     {
-        slicer.HideMasks();
+        mask.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,7 +33,7 @@ public class CuttingBoardMinigame : MonoBehaviour
                 if(hit.collider.gameObject == ingredient.gameObject)
                 {
                     float xSlicePos = mainCamera.ScreenToWorldPoint(mousePosition).x;
-                    slicer.Slice(xSlicePos, ingredient);
+                    slicer.Slice(xSlicePos, ingredient, mask);
                 }
             }
         }

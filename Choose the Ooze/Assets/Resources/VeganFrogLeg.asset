@@ -16,3 +16,4 @@ MonoBehaviour:
   cost: 25
   emotion: 4
   severity: 1
+  weight: 350
