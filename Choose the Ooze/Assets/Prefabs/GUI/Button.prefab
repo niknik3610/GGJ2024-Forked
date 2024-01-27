@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: c3348a3870807014596b47c6abc1ee90, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 45ac4a37ac34b7648a07a450a0146f89, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: c3348a3870807014596b47c6abc1ee90, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: 44494c713f30e614d98b67b583f5c4a0, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
