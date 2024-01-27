@@ -10,7 +10,7 @@ public class Slicer : MonoBehaviour
     public void Slice(float slicePointX, Ingredient ingredient)
     {
         Transform maskTransform = hiddenIngredientPartOne.gameObject.transform;
-        maskTransform.position = new Vector3(slicePointX, maskTransform.transform.position.y, 0);
+        maskTransform.position = new Vector3(slicePointX - (hiddenIngredientPartOne.bounds.size.x / 2), maskTransform.transform.position.y, 0);
 
         hiddenIngredientPartOne.gameObject.SetActive(true); 
    }
