@@ -27,7 +27,7 @@ public class IngredientShelf : MonoBehaviour
             {
                 if(hit.collider.gameObject == this.gameObject)
                 {
-                    if(_mouseFollower.ingredientBeingCarried == null)
+                    if(_mouseFollower.ingredientBeingCarried == null && _mouseFollower.ingredientInProcess == false)
                     {
                         GameObject ingredientInstance = Instantiate(ingredient, new Vector3(), Quaternion.identity, _mouseFollower.transform);
                         _mouseFollower.ingredientBeingCarried = ingredientInstance.GetComponent<Ingredient>();
