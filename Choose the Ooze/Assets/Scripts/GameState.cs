@@ -10,8 +10,6 @@ public class GameState : MonoBehaviour
     [SerializeField] private Transform[] _stateCameraPositions;
     [SerializeField] private Camera _camera;
 
-    private float _cameraSpeed = 10;
-
     public Animator transition;
     public float transitionTime = 1f;
     
