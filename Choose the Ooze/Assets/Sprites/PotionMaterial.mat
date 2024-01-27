@@ -32,7 +32,7 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Excitedness: 0.36
-    - _FillLevel: -0.04
+    - _FillLevel: -0.46
     - _Float: 0
     - _Temperature: 0.47
     m_Colors:
