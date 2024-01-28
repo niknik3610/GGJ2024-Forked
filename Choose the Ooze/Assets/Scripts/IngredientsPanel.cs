@@ -11,7 +11,7 @@ public class IngredientsPanel : MonoBehaviour
 
     public List<GameObject> instantiatedEntries = new();
 
-    private int yPositionOfNextEntry = -35;
+    private int yPositionOfNextEntry = -25;
 
     public void UpdateInstructionList(List<IngredientInstruction> instructions)
     {
@@ -96,7 +96,7 @@ public class IngredientsPanel : MonoBehaviour
             Destroy(entry);
         }
         instantiatedEntries = new();
-        yPositionOfNextEntry = -35;
+        yPositionOfNextEntry = -25;
     }
 
     public void AddNewEntry(string text)

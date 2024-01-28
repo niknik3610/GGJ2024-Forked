@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SEt temperature to medium
+  m_text: Set temperature to medium
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2698a27be065ee74ebf6f24ba4f3263e, type: 2}
-  m_sharedMaterial: {fileID: 5879988850637535902, guid: 2698a27be065ee74ebf6f24ba4f3263e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f88f01d705f8f0d4a80a9d653812fa97, type: 2}
+  m_sharedMaterial: {fileID: 8297309157508535056, guid: f88f01d705f8f0d4a80a9d653812fa97, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9
-  m_fontSizeBase: 9
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
