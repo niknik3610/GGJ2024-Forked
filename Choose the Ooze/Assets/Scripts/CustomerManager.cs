@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -29,7 +30,12 @@ public class CustomerManager : MonoBehaviour
         characterObject.GetComponent<Character>().SetClientType(ClientType.Fish);
         currentCharacter = characterObject.GetComponent<Character>();
         ClientRequest request = requestGenerator.generateRequest(currentCharacter.type); 
-        dialogueTextField.text = FindObjectOfType<DialogueManager>().generateCustomerDialogue(currentCharacter.type, request);
+        SetDialogueTextField(FindObjectOfType<DialogueManager>().generateCustomerDialogue(currentCharacter.type, request));
         cauldron.SetExpectedIngredients(request);
+    }
+
+    public void SetDialogueTextField(String text)
+    {
+        dialogueTextField.text = text;
     }
 }

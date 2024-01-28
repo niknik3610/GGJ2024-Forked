@@ -9,5 +9,4 @@ public class CharacterDialogue
     public string[] introLines;
     [TextArea(3, 5)]
     public string[] outroLines;
-
 }

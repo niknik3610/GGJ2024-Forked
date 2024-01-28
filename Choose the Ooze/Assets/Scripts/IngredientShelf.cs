@@ -29,7 +29,7 @@ public class IngredientShelf : MonoBehaviour
             {
                 if(rhit.collider.gameObject == gameObject)
                 {
-                    if(_mouseFollower.ingredientInProcess == false)
+                    if(_mouseFollower.ingredientInProcess == false && _mouseFollower.potionBeingCarried == null)
                     {
                             GameObject ingredientInstance = Instantiate(ingredient, new Vector3(0, 0, 0), Quaternion.identity, _mouseFollower.transform);
                             ingredientInstance.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);

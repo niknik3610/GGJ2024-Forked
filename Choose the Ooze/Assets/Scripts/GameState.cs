@@ -12,7 +12,8 @@ public class GameState : MonoBehaviour
 
     public Animator transition;
     public float transitionTime = 1f;
-    
+
+    public int currentScore = 0;
     
     public enum State
     {
@@ -53,7 +54,7 @@ public class GameState : MonoBehaviour
 
     private IEnumerator perform_transition(State state)
     {
-        transition.SetTrigger("StartTransition");
+        CircleWipe();
         yield return new WaitForSeconds(transitionTime);
         _activeState = state;
         _transitionInProgress = true;
@@ -88,5 +89,9 @@ public class GameState : MonoBehaviour
             case State.Selling:
                 break;
         }
+    }
+    public void CircleWipe()
+    {
+        transition.SetTrigger("StartTransition");
     }
 }

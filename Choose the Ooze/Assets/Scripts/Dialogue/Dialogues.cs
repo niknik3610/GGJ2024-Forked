@@ -6,4 +6,5 @@ public class Dialogues : MonoBehaviour
 {
     public CharacterDialogue[] characterDialogues;
     public AilmentDialogue[] ailmentDialogues;
+    public AcceptanceDialogue[] acceptanceDialogues;
 }

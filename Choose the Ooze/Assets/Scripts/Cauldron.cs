@@ -97,6 +97,7 @@ public class Cauldron : MonoBehaviour
         }
         Debug.Log(result);
         finalResult += result;
+        potionBeingCreated.AddIngredient(_mouseFollower.ingredientBeingCarried);
         potionBeingCreated.potionContents.Request_required_ingredients.Add((_mouseFollower.ingredientBeingCarried.material.emotion, _mouseFollower.ingredientBeingCarried.material.severity));
         receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
         _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);

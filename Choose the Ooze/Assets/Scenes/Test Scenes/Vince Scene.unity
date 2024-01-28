@@ -324,12 +324,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199424074}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.563002, y: 0, z: 0}
+  m_LocalScale: {x: 1.0782906, y: 1.0782906, z: 1.0782906}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1480981308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &283361275
 GameObject:
@@ -2033,6 +2033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientBeingCarried: {fileID: 0}
+  potionBeingCarried: {fileID: 0}
   ingredientInProcess: 0
 --- !u!4 &819181233
 Transform:
@@ -2134,6 +2135,22 @@ MonoBehaviour:
     severity: 1
     dialogueLines:
     - 'My wife just left me... I need something for the pain. '
+  acceptanceDialogues:
+  - happinessLevel: 0
+    dialogueLines:
+    - Are you trying to poison me!? I'm not paying a penny for this!
+  - happinessLevel: 1
+    dialogueLines:
+    - Well, I guess I can use this as dish soap...
+  - happinessLevel: 2
+    dialogueLines:
+    - Thanks, I'm sure this will help me.
+  - happinessLevel: 3
+    dialogueLines:
+    - Thank you very much! I feel lighter just looking at this!
+  - happinessLevel: 4
+    dialogueLines:
+    - This is perfect! My troubles are floating away... I can't thank you enough!
 --- !u!4 &961161892
 Transform:
   m_ObjectHideFlags: 0
@@ -3730,6 +3747,7 @@ Transform:
   - {fileID: 283361276}
   - {fileID: 1728578572}
   - {fileID: 332142895}
+  - {fileID: 199424077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490305992
@@ -4738,6 +4756,7 @@ MonoBehaviour:
   _camera: {fileID: 753765731}
   transition: {fileID: 1391566263}
   transitionTime: 1
+  currentScore: 0
 --- !u!4 &1814642224
 Transform:
   m_ObjectHideFlags: 0
@@ -5381,7 +5400,6 @@ SceneRoots:
   - {fileID: 1814642224}
   - {fileID: 570225506}
   - {fileID: 753765732}
-  - {fileID: 199424077}
   - {fileID: 1480981308}
   - {fileID: 340254060}
   - {fileID: 1618442892}
