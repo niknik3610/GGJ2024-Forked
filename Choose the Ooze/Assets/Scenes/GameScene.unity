@@ -1086,6 +1086,8 @@ MonoBehaviour:
   currentChangeRate: 0
   temperatureBar: {fileID: 180378220}
   ingredientsPanel: {fileID: 1366851438}
+  potionPrefab: {fileID: 1934803407943374672, guid: 00f42babf55c7d64d9200606a861ce41, type: 3}
+  potionBeingCreated: {fileID: 0}
   receivedIngredients: []
 --- !u!4 &455593044
 Transform:
@@ -2808,6 +2810,10 @@ PrefabInstance:
     - target: {fileID: 3293681066146818470, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_text
       value: Hold to cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293681066146818470, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
+      propertyPath: m_fontSize
+      value: 25.95
       objectReference: {fileID: 0}
     - target: {fileID: 3318135151169691550, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_Name
@@ -4768,6 +4774,10 @@ PrefabInstance:
     - target: {fileID: 3293681066146818470, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_text
       value: Hold to Heat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293681066146818470, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
+      propertyPath: m_fontSize
+      value: 25.95
       objectReference: {fileID: 0}
     - target: {fileID: 3318135151169691550, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_Name

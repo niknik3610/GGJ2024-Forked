@@ -25,6 +25,8 @@ public class Cauldron : MonoBehaviour
 
     public TemperatureBar temperatureBar;
     public IngredientsPanel ingredientsPanel;
+    public GameObject potionPrefab;
+    public Potion potionBeingCreated;
     private List<IngredientInstruction> ingredientInstructions = new ();
     private int currentIngredientIndex = 0;
     public List<Ingredient> receivedIngredients = new();
@@ -43,7 +45,7 @@ public class Cauldron : MonoBehaviour
         {
             _materials.Add((IngredientDetails.Material)scripObjects[i]);
         }
-        prevFrameTemperatureLevel = ingredientInstructions[0].requiredLevels.temperatureLevel;
+        //prevFrameTemperatureLevel = ingredientInstructions[0].requiredLevels.temperatureLevel;
     }
     // Update is called once per frame
     void Update()
@@ -59,6 +61,7 @@ public class Cauldron : MonoBehaviour
             {
                 if(rhit.collider.gameObject == gameObject)
                 {
+                    Debug.Log("Clicked Cauldron");
                     if(_mouseFollower.ingredientBeingCarried != null)
                     {
                         AddIngredient(_mouseFollower.ingredientBeingCarried);
@@ -67,7 +70,7 @@ public class Cauldron : MonoBehaviour
             }
         }
         temperatureBar.setSliderValue(temperatureLevel);
-        StartCoroutine("prevFrameTemperatureCheck");
+        //StartCoroutine("prevFrameTemperatureCheck");
         if((temperatureLevel > 0 || currentChangeRate > 0) && (temperatureLevel < 1 || currentChangeRate < 0))
         {
             temperatureLevel += currentChangeRate * Time.deltaTime;
@@ -92,9 +95,9 @@ public class Cauldron : MonoBehaviour
         {
             expectedTemperature = ingredientInstructions[currentIngredientIndex - 1].requiredLevels.temperatureLevel;
         }
-
         Debug.Log(result);
         finalResult += result;
+        potionBeingCreated.potionContents.Request_required_ingredients.Add((_mouseFollower.ingredientBeingCarried.material.emotion, _mouseFollower.ingredientBeingCarried.material.severity));
         receivedIngredients.Add(_mouseFollower.ingredientBeingCarried);
         _mouseFollower.ingredientBeingCarried.gameObject.transform.SetParent(null);
         _mouseFollower.ingredientBeingCarried.gameObject.SetActive(false);
@@ -103,9 +106,9 @@ public class Cauldron : MonoBehaviour
 
     public void FinishBrewing()
     {
-        float toReturn = finalResult;
+        potionBeingCreated.value = finalResult;
+        potionBeingCreated.gameObject.SetActive(true);
         ResetCauldron();
-        Debug.Log(toReturn);
     }
 
     public void ResetCauldron()
@@ -119,6 +122,7 @@ public class Cauldron : MonoBehaviour
         receivedIngredients = new();
         finalResult = 0f;
         currentIngredientIndex = 0;
+        potionBeingCreated = null;
     }
 
     public void SetExpectedIngredients(ClientRequest request)
@@ -144,6 +148,8 @@ public class Cauldron : MonoBehaviour
         }
         ingredientsPanel.UpdateInstructionList(ingredientInstructions);
         expectedTemperature = ingredientInstructions[0].requiredLevels.temperatureLevel;
+        potionBeingCreated = Instantiate(potionPrefab, gameObject.transform.position, Quaternion.identity).GetComponent<Potion>();
+        potionBeingCreated.gameObject.SetActive(false);
     }
 
     public float EvaluateIngredient(IngredientInstruction expected, Ingredient received)
