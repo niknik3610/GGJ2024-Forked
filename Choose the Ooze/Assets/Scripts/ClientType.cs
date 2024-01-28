@@ -6,7 +6,7 @@ public enum ClientType
 {
     None,
     Fish,
-    Wizard,
+    Witch,
     Viking,
     Cultist,
     Scientist,

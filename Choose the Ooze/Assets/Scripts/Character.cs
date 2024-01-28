@@ -31,7 +31,10 @@ public class Character : MonoBehaviour
                 _happySprite = Resources.Load<Sprite>("Characters/HappyFisherman");
                 _renderer.sprite = _sadSprite;
                 break;
-            case ClientType.Wizard:
+            case ClientType.Witch:
+                _sadSprite = Resources.Load<Sprite>("Characters/WitchSad");
+                _happySprite = Resources.Load<Sprite>("Characters/WitchHappy");
+                _renderer.sprite = _sadSprite;
                 break;
             case ClientType.Viking:
                 break;
@@ -46,6 +49,9 @@ public class Character : MonoBehaviour
                 _renderer.sprite = _sadSprite;
                 break;
             case ClientType.Princess:
+                _sadSprite = Resources.Load<Sprite>("Characters/PrincessSad");
+                _happySprite = Resources.Load<Sprite>("Characters/PrincessHappy");
+                _renderer.sprite = _sadSprite;
                 break;
             case ClientType.Milkman:
                 break;
