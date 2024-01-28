@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8089357273674239331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 356234962150375348}
+  - component: {fileID: 7960881287405640611}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &356234962150375348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089357273674239331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.667329, y: -0.26868895, z: -0.03861549}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7960881287405640611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089357273674239331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9667b059fd476ec429134b1b8f22d3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: theme
+    clip: {fileID: 8300000, guid: 370c8c5981d46dd46b7a2d5922e4a084, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: cooking_soft
+    clip: {fileID: 8300000, guid: 641eb6a5997fc1d4daf6352b5c8a8fa9, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: cooking_hard
+    clip: {fileID: 8300000, guid: 99f7bcb6c59b86c4d839e1ab6c2bf057, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: nice_okay
+    clip: {fileID: 8300000, guid: efa8783c5a571344fa97bbb59fd9dfe7, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: chop_best
+    clip: {fileID: 8300000, guid: bb744710a73e96043a7c13715f5d61e0, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: chop_bad
+    clip: {fileID: 8300000, guid: 2cd18a163c6b3e24cbfb8c883349f72c, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: creak1
+    clip: {fileID: 8300000, guid: 733f9e835a2db9c46b4bb058df52f9e6, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: creak2
+    clip: {fileID: 8300000, guid: 3ae4ed7da6c0da4458410cb89111953e, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: creak3
+    clip: {fileID: 8300000, guid: a3c27e56041890a42a8eae4294203fde, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: creak4
+    clip: {fileID: 8300000, guid: cd721087392223448a945381ac0736ba, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: cut_another1
+    clip: {fileID: 8300000, guid: 21736b9165ae8484da85394e184c1ca8, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: cut_another2
+    clip: {fileID: 8300000, guid: 403af5d78e993fd47a15c9a6ae5d67f8, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: knife_sharpen1
+    clip: {fileID: 8300000, guid: a70d76c90447e05458bc6fe8cebd7b58, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: knife_sharpen2
+    clip: {fileID: 8300000, guid: edf87116eef4343428d84f4733d58081, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: knife_sharpen3
+    clip: {fileID: 8300000, guid: 173db1ebfd213e649ace38f44cff2e31, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: grind1
+    clip: {fileID: 8300000, guid: c21d9637c2cbdbb4cbc0c274ced863da, type: 3}
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
