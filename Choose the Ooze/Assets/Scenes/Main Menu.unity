@@ -1577,8 +1577,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598854477873040288, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
       propertyPath: m_text
-      value: "programming: \nVince Turskis\nTom Becker\nNik Harnish\nNellie Mugattarova,\nMihn
-        Tran\n\nart: Rina Alo\n\nUI: \nVincas Turskis,\nNellie Mugattarova"
+      value: "programming: \nVince Turskis\nTom Becker\nNik Harnish\nMihn Tran\n\nart:
+        Rina Alo\n\nUI: Nellie Mugattarova\n\nmade for the Global Game Jam 2024"
       objectReference: {fileID: 0}
     - target: {fileID: 2598854477873040288, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
       propertyPath: m_fontSize
