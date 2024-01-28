@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +6,7 @@ using UnityEngine.UI;
 
 public class CustomerManager : MonoBehaviour
 {
+    public ClientType[] implementedTypes;
     public ClientRequestGenerator requestGenerator;
     public Character currentCharacter = null;
     public GameObject characterPrefab;
@@ -14,6 +14,7 @@ public class CustomerManager : MonoBehaviour
     public Transform characterPosition;
     public Cauldron cauldron;
     public Button OKButton;
+    private ClientType lastClient = ClientType.Child;
     void Start()
     {
         requestGenerator = new ClientRequestGenerator();
@@ -29,15 +30,26 @@ public class CustomerManager : MonoBehaviour
     public void CreateRandomCustomer()
     {
         GameObject characterObject = Instantiate(characterPrefab, characterPosition.position, Quaternion.identity, characterPosition);
-        characterObject.GetComponent<Character>().SetClientType(ClientType.Fish);
+        characterObject.GetComponent<Character>().SetClientType(ChooseClientType());
         currentCharacter = characterObject.GetComponent<Character>();
+        lastClient = currentCharacter.type;
         ClientRequest request = requestGenerator.generateRequest(currentCharacter.type); 
         SetDialogueTextField(FindObjectOfType<DialogueManager>().generateCustomerDialogue(currentCharacter.type, request));
         cauldron.SetExpectedIngredients(request);
     }
 
-    public void SetDialogueTextField(String text)
+    public void SetDialogueTextField(string text)
     {
         dialogueTextField.text = text;
+    }
+    public ClientType ChooseClientType()
+    {
+        int rand = Random.Range(0, implementedTypes.Length);
+        while(implementedTypes[rand] == lastClient)
+        {
+            rand = Random.Range(0, implementedTypes.Length);
+        }
+        Debug.Log(implementedTypes[rand]);
+        return implementedTypes[rand];
     }
 }

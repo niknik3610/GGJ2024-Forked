@@ -27,7 +27,6 @@ public class Character : MonoBehaviour
             case ClientType.None:
                 break;
             case ClientType.Fish:
-                Debug.Log("Attempting to load fisherman sprite...");
                 _sadSprite = Resources.Load<Sprite>("Characters/SadFisherman");
                 _happySprite = Resources.Load<Sprite>("Characters/HappyFisherman");
                 _renderer.sprite = _sadSprite;
@@ -37,8 +36,14 @@ public class Character : MonoBehaviour
             case ClientType.Viking:
                 break;
             case ClientType.Cultist:
+                _sadSprite = Resources.Load<Sprite>("Characters/CultistSad");
+                _happySprite = Resources.Load<Sprite>("Characters/CultistHappy");
+                _renderer.sprite = _sadSprite;
                 break;
             case ClientType.Scientist:
+                _sadSprite = Resources.Load<Sprite>("Characters/ScientistSad");
+                _happySprite = Resources.Load<Sprite>("Characters/ScientistHappy");
+                _renderer.sprite = _sadSprite;
                 break;
             case ClientType.Princess:
                 break;

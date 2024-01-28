@@ -615,7 +615,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1879578825}
+    m_TransformParent: {fileID: 570363100}
     m_Modifications:
     - target: {fileID: 3293681066146818470, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_text
@@ -663,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -671,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -679,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -687,7 +687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 79.51
+      value: 79.51001
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -707,23 +707,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000014544
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6708731554473730660, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1485,7 +1485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240512373449732515, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1240512373449732515, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
       propertyPath: m_Color.b
@@ -1585,7 +1585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9137338359935270653, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 535.96
+      value: 649.34
       objectReference: {fileID: 0}
     - target: {fileID: 9137338359935270653, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1637,7 +1637,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9137338359935270653, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 216160121}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
 --- !u!224 &570363100 stripped
@@ -3531,6 +3534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74639a27fe626c49a0ef8efa03ac98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  implementedTypes: 010000000400000005000000
   currentCharacter: {fileID: 0}
   characterPrefab: {fileID: 3801080684705453815, guid: faa3c960019cc7e4d9f43165e6ba933e, type: 3}
   dialogueTextField: {fileID: 1319440914}
@@ -4630,6 +4634,20 @@ MonoBehaviour:
     outroLines:
     - Reckon you have something for that?
     - I'd love a potion for that.
+  - client: 4
+    introLines:
+    - 'You know, rotten flesh is a great cure for anxiety. Anyway,  '
+    - 'Soon, you will join me. Until then... '
+    outroLines:
+    - I think I need a magical remedy.
+    - It pains me to ask, but... can you help?
+  - client: 5
+    introLines:
+    - 'Ah, nice to spend time with a fellow scholar. However, '
+    - 'I love how this place smells! So, '
+    outroLines:
+    - I would brew something for that myself, but I don't have time. Can you help?
+    - Could you concoct something for that?
   ailmentDialogues:
   - emotion: 1
     severity: 0
@@ -5059,13 +5077,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 570363100}
-  - {fileID: 216160121}
   m_Father: {fileID: 312582499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.6633759, y: 1.3980036}
-  m_SizeDelta: {x: 550.4756, y: 617.0995}
+  m_AnchoredPosition: {x: 2.6633759, y: 0.6691}
+  m_SizeDelta: {x: 550.4756, y: 752.2942}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1886313734
 GameObject:
