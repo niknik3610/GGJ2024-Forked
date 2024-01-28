@@ -48,10 +48,9 @@ public class Slicer : MonoBehaviour
             Quaternion.identity
         );
 
-        cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
-
         SpriteMask partMask = UnityEngine.Object.Instantiate(ingredientOneMask, new Vector3(), Quaternion.identity);
-        partMask.transform.rotation *= Quaternion.Euler(0, 0, -90);
+        //cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
+        //partMask.transform.rotation *= Quaternion.Euler(0, 0, -90);
 
         partMask.gameObject.transform.localScale = aspectRatio;
         partMask.gameObject.transform.localScale = new Vector3(
