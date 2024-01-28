@@ -16,13 +16,14 @@ public class CuttingBoardMinigame : MonoBehaviour
     public TMP_Text weightSign;
     public GameObject cutSign;
     public GameObject pickOneSign;
-
     private bool allowedToCut;
+    private bool finished;
     private Ingredient cutIngredient;
 
 
     public void ResetMiniGame() {
         allowedToCut = true;
+        finished = false;
         cutSign.SetActive(true);
         pickOneSign.SetActive(false);
         knife.SetActive(true);
@@ -48,6 +49,8 @@ public class CuttingBoardMinigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (finished) return;
+
         String mat = ingredient.material.ingredientName;
         float weight = ingredient.material.weight;
         weightSign.text = String.Format("{0}: {1}g per Item", mat, weight);
@@ -56,7 +59,7 @@ public class CuttingBoardMinigame : MonoBehaviour
             Ingredient result = this.userPick();
 
             if (result != null) {
-                
+                mouseFollower.SetIngredient(result);
             }
             return;
         }
@@ -82,7 +85,7 @@ public class CuttingBoardMinigame : MonoBehaviour
             pickOneSign.SetActive(true);
             float xSlicePos = mainCamera.ScreenToWorldPoint(mousePosition).x;
 
-            slicer.Slice(xSlicePos, ingredient, cutIngredient, mask);
+            cutIngredient = slicer.Slice(xSlicePos, ingredient, mask);
         }
     }
 
@@ -102,11 +105,16 @@ public class CuttingBoardMinigame : MonoBehaviour
         //left piece
         if (hit.collider.gameObject == ingredient.gameObject)
         {
-            //todo: do mass calc in slicer
+            cutIngredient.gameObject.SetActive(false);
+            Destroy(cutIngredient);
+            finished = true;
             return ingredient;
         }
         //right piece
         else if (hit.collider.gameObject == cutIngredient.gameObject) {
+            ingredient.gameObject.SetActive(false);
+            Destroy(ingredient);
+            finished = true;
             return cutIngredient;
         }
 

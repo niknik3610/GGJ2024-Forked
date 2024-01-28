@@ -5,8 +5,7 @@ public class Slicer : MonoBehaviour
 { 
     const int PART_OFF_SET = 10;
 
-    //returns the percentage of the left piece of the ingredient
-    public float Slice(float slicePointX, Ingredient ingredient, Ingredient cutIngredient, SpriteMask ingredientOneMask)
+    public Ingredient Slice(float slicePointX, Ingredient ingredient, SpriteMask ingredientOneMask)
     {
         Vector2 aspectRatio = new Vector2(4, 4);
 
@@ -65,8 +64,9 @@ public class Slicer : MonoBehaviour
             Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y + ingredientOneMask.bounds.size.y / 2
         );
 
-        cutIngredient = cutPiece;
-        return ingrLeftPercent;
+        ingredientOneMask.transform.SetParent(ingredient.transform);
+        partMask.transform.SetParent(cutPiece.transform);
+        return cutPiece;
     }
 
    public void HideMasks() {
