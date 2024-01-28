@@ -60,6 +60,7 @@ public class CuttingBoardMinigame : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
         if (!Physics.Raycast(ray, out RaycastHit hit))
         {
+            mainCamera.Sc
             return;
         }
 
