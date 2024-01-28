@@ -12,6 +12,7 @@ public class GrindingMinigame : MonoBehaviour
     public List<BoxCollider2D> sensors;
     public SpriteMask mask;
     public Pestle pestle;
+    private float startingY;
 
     const float GRIND_SPEED = 4f;
 
@@ -19,10 +20,13 @@ public class GrindingMinigame : MonoBehaviour
     Collider2D triggeredSensor;
     float grinding_percentage;
 
-    void ResetMinigame()
+    public void EndMinigame()
     {
-        pestleCollider = pestle.GetComponent<BoxCollider2D>();
-
+        pestle.gameObject.SetActive(false);
+    }
+    public void StartMinigame()
+    {
+        pestle.gameObject.SetActive(true);
         switch (raw.currentLevels.grindLevel)
         {
             case GrindLevel.None:
@@ -50,12 +54,13 @@ public class GrindingMinigame : MonoBehaviour
         // Move the raw and powder ingredients per the grinding percentage
         raw.transform.position = new Vector3(
             raw.transform.position.x,
-            -grinding_percentage,
+            startingY
+            -(startingY-mask.gameObject.transform.position.y)*grinding_percentage,
             raw.transform.position.z
         );
         powder.transform.position = new Vector3(
             powder.transform.position.x,
-            grinding_percentage - 1.5f,
+            -2.4f + (grinding_percentage * 1.6f),
             powder.transform.position.z
         );
     }
@@ -104,8 +109,10 @@ public class GrindingMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pestleCollider = pestle.GetComponent<BoxCollider2D>();
+        startingY = raw.transform.position.y;
         // raw = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
-        ResetMinigame();
+        EndMinigame();
     }
 
     // Update is called once per frame

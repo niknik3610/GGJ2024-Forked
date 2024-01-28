@@ -65,6 +65,7 @@ public class GameState : MonoBehaviour
                         FindObjectOfType<CuttingBoardMinigame>().EnterMiniGame();
                         break;
                     case State.Grinding:
+                        FindObjectOfType<GrindingMinigame>().StartMinigame();
                         break;
                     case State.Selling:
                         break;
@@ -86,6 +87,18 @@ public class GameState : MonoBehaviour
                 }
                 break;
             case State.Grinding:
+                switch (state)
+                {
+                    case State.Workshop:
+                        FindObjectOfType<GrindingMinigame>().EndMinigame();
+                        break;
+                    case State.Cutting:
+                        break;
+                    case State.Grinding:
+                        break;
+                    case State.Selling:
+                        break;
+                }
                 break;
             case State.Selling:
                 break;
