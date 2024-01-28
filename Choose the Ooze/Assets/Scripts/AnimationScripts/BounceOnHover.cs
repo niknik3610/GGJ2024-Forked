@@ -3,7 +3,7 @@ using UnityEngine;
 public class BounceOnHover : MonoBehaviour
 {
 
-    public float amplitude = 0.004f;
+    public float amplitude = 0.0007f;
     public float speed = 4f;
     private bool wasHovering;
     private Vector3 originalLocation;
