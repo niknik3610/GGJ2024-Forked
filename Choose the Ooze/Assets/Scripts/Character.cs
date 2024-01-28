@@ -140,8 +140,8 @@ public class Character : MonoBehaviour
         cm.OKButton.interactable = false;
         yield return new WaitForSeconds(waitBeforeLeavingTime);
         _mouseFollower.potionBeingCarried = null;
-        GameState.getInstance().CircleWipe();
-        yield return new WaitForSeconds(GameState.getInstance().transitionTime);
+        GameState.getInstance().circleWipe.Wipe();
+        yield return new WaitForSeconds(GameState.getInstance().circleWipe.transitionTime);
         cm.OKButton.interactable = true;
         cm.CreateRandomCustomer();
         Destroy(gameObject);

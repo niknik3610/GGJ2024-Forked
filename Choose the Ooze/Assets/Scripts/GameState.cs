@@ -9,9 +9,7 @@ public class GameState : MonoBehaviour
     private bool _transitionInProgress = false;
     [SerializeField] private Transform[] _stateCameraPositions;
     [SerializeField] private Camera _camera;
-
-    public Animator transition;
-    public float transitionTime = 1f;
+    public CircleWipe circleWipe;
 
     public int currentScore = 0;
     
@@ -54,8 +52,8 @@ public class GameState : MonoBehaviour
 
     private IEnumerator perform_transition(State state)
     {
-        CircleWipe();
-        yield return new WaitForSeconds(transitionTime);
+        circleWipe.Wipe();
+        yield return new WaitForSeconds(circleWipe.transitionTime);
         switch (_activeState)
         {
             case State.Workshop:
@@ -103,9 +101,5 @@ public class GameState : MonoBehaviour
         Ingredient heldItem = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
 
         StartCoroutine(perform_transition(nextState));
-    }
-    public void CircleWipe()
-    {
-        transition.SetTrigger("StartTransition");
     }
 }
