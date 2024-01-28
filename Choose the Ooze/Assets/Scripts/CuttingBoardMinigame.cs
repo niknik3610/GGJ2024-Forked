@@ -100,6 +100,16 @@ public class CuttingBoardMinigame : MonoBehaviour
             float xSlicePos = mainCamera.ScreenToWorldPoint(mousePosition).x;
 
             cutIngredient = slicer.Slice(xSlicePos, ingredient, mask);
+            float randomNum = UnityEngine.Random.Range(0, 100);
+            if (randomNum > 0.66) {
+                AudioManager.instance.Play("chop_best");
+            }
+            else if (randomNum > 0.33) {
+                AudioManager.instance.Play("chop_okay");
+            }
+            else {
+                AudioManager.instance.Play("chop_bad");
+            }
         }
     }
 
