@@ -11,18 +11,21 @@ public class CuttingBoardMinigame : MonoBehaviour
     public Slicer slicer;
     private Ingredient ingredient;
     public MouseFollower mouseFollower;
+    public GameObject knife;
     public SpriteMask mask;
     public TMP_Text weightSign;
     public GameObject cutSign;
     public GameObject pickOneSign;
 
     private bool allowedToCut;
+    private Ingredient cutIngredient;
 
 
     public void ResetMiniGame() {
         allowedToCut = true;
         cutSign.SetActive(true);
         pickOneSign.SetActive(false);
+        knife.SetActive(true);
     }
 
     void Awake() {
@@ -31,6 +34,8 @@ public class CuttingBoardMinigame : MonoBehaviour
         ingredient.gameObject.transform.SetParent(this.transform);
         ingredient.gameObject.transform.position = new Vector3(-5, -2f);
         ingredient.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 0);
+
+        ingredient.gameObject.transform.rotation *= Quaternion.Euler(0, 0, -90);
 
         mainCamera = Camera.main; 
     }
@@ -48,6 +53,11 @@ public class CuttingBoardMinigame : MonoBehaviour
         weightSign.text = String.Format("{0}: {1}g per Item", mat, weight);
 
         if (!allowedToCut) {
+            Ingredient result = this.userPick();
+
+            if (result != null) {
+                
+            }
             return;
         }
 
@@ -67,10 +77,39 @@ public class CuttingBoardMinigame : MonoBehaviour
         if (hit.collider.gameObject == ingredient.gameObject)
         {
             allowedToCut = false;
+            knife.SetActive(false);
             cutSign.SetActive(false);
             pickOneSign.SetActive(true);
             float xSlicePos = mainCamera.ScreenToWorldPoint(mousePosition).x;
-            slicer.Slice(xSlicePos, ingredient, mask);
+
+            slicer.Slice(xSlicePos, ingredient, cutIngredient, mask);
         }
+    }
+
+    private Ingredient userPick() {
+        Mouse mouse = Mouse.current;
+        if (!mouse.leftButton.wasPressedThisFrame) {
+            return null;
+        }
+
+        Vector3 mousePos = mouse.position.ReadValue();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+        if (!Physics.Raycast(ray, out RaycastHit hit))
+        {
+            return null;
+        }
+
+        //left piece
+        if (hit.collider.gameObject == ingredient.gameObject)
+        {
+            //todo: do mass calc in slicer
+            return ingredient;
+        }
+        //right piece
+        else if (hit.collider.gameObject == cutIngredient.gameObject) {
+            return cutIngredient;
+        }
+
+        return null;
     }
 }

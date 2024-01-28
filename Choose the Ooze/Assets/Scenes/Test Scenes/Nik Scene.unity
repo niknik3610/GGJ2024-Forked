@@ -1058,6 +1058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicer: {fileID: 1506612673}
   mouseFollower: {fileID: 530620895}
+  knife: {fileID: 2065998279}
   mask: {fileID: 650808244}
   weightSign: {fileID: 834053339}
   cutSign: {fileID: 1389003704}

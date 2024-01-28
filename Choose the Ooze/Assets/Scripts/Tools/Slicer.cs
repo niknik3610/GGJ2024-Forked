@@ -6,9 +6,9 @@ public class Slicer : MonoBehaviour
     const int PART_OFF_SET = 10;
 
     //returns the percentage of the left piece of the ingredient
-    public float Slice(float slicePointX, Ingredient ingredient, SpriteMask ingredientOneMask)
+    public float Slice(float slicePointX, Ingredient ingredient, Ingredient cutIngredient, SpriteMask ingredientOneMask)
     {
-        Vector2 aspectRatio = new Vector2(2, 2);
+        Vector2 aspectRatio = new Vector2(4, 4);
 
         SpriteRenderer ingrRenderer = ingredient.GetComponent<SpriteRenderer>();
         float ingrWidth = ingrRenderer.bounds.size.x;
@@ -48,9 +48,11 @@ public class Slicer : MonoBehaviour
             Quaternion.identity
         );
 
+
+
         SpriteMask partMask = UnityEngine.Object.Instantiate(ingredientOneMask, new Vector3(), Quaternion.identity);
-        //cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
-        //partMask.transform.rotation *= Quaternion.Euler(0, 0, -90);
+        cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
+        partMask.transform.rotation *= Quaternion.Euler(0, 0, -90);
 
         partMask.gameObject.transform.localScale = aspectRatio;
         partMask.gameObject.transform.localScale = new Vector3(
@@ -63,6 +65,7 @@ public class Slicer : MonoBehaviour
             Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y + ingredientOneMask.bounds.size.y / 2
         );
 
+        cutIngredient = cutPiece;
         return ingrLeftPercent;
     }
 
