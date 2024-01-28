@@ -3861,6 +3861,7 @@ GameObject:
   - component: {fileID: 1183383089}
   - component: {fileID: 1183383088}
   - component: {fileID: 1183383090}
+  - component: {fileID: 1183383091}
   m_Layer: 0
   m_Name: Cutter
   m_TagString: Untagged
@@ -3984,6 +3985,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.005
   speed: 4
+--- !u!114 &1183383091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183383081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fed89d286299fb478f7d53ff44a8206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1204829849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6199604451275333199, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
