@@ -9,10 +9,11 @@ public class LoreScreen : MonoBehaviour
 
     public GameObject textcard2;
 
+    public CircleWipe circleWipe;
+
     void Awake(){   
         Debug.Log("Start lore screen");
-        textCard1.SetActive(true);
-        textcard2.SetActive(false);
+        this.loadTextCard1();
     }
 
     public void loadTextCard1(){
@@ -23,5 +24,16 @@ public class LoreScreen : MonoBehaviour
     public void loadTextCard2(){
         textCard1.SetActive(false);
         textcard2.SetActive(true);
+    }
+
+    public void loadMainGameScreen(){
+        StartCoroutine(SceneTransition(2));
+    }
+
+    public IEnumerator SceneTransition(int sceneID)
+    {
+        circleWipe.Wipe();
+        yield return new WaitForSeconds(circleWipe.transitionTime);
+        SceneManager.LoadScene(sceneID);
     }
 }
