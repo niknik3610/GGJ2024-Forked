@@ -8,10 +8,15 @@ public class Character : MonoBehaviour
     public ClientType type {get; private set;} = ClientType.None;
     private MouseFollower _mouseFollower;
 
+    private Sprite _sadSprite;
+    private Sprite _happySprite;
+    private SpriteRenderer _renderer;
+
     public float waitBeforeLeavingTime = 4f;
     void Awake()
     {
         _mouseFollower = FindObjectOfType<MouseFollower>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     public void SetClientType(ClientType Type)
@@ -23,7 +28,9 @@ public class Character : MonoBehaviour
                 break;
             case ClientType.Fish:
                 Debug.Log("Attempting to load fisherman sprite...");
-                GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Characters/SadFisherman");
+                _sadSprite = Resources.Load<Sprite>("Characters/SadFisherman");
+                _happySprite = Resources.Load<Sprite>("Characters/HappyFisherman");
+                _renderer.sprite = _sadSprite;
                 break;
             case ClientType.Wizard:
                 break;
@@ -113,6 +120,10 @@ public class Character : MonoBehaviour
                 string text = dm.dialogues.acceptanceDialogues[i].dialogueLines[rand];
                 cm.SetDialogueTextField(text);
                 textSet = true;
+                if((int)level > (int)Happiness.Poor)
+                {
+                    _renderer.sprite = _happySprite;
+                }
                 break;
             }
         }
