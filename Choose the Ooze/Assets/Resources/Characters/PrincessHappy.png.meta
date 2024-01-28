@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 94c4781630858084d9ce112424f6be32
-=======
-guid: ee21739d01f9eed46acb614816acb909
->>>>>>> b76dfbc (Added potion and audiomanager prefabs)
+guid: 0ddd5ef2ba0cd3c4999b7e01a8749978
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
