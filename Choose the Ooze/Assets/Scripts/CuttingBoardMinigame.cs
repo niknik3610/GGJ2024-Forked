@@ -9,7 +9,7 @@ public class CuttingBoardMinigame : MonoBehaviour
 {
     Camera mainCamera; 
     public Slicer slicer;
-    public Ingredient ingredient;
+    private Ingredient ingredient;
     public MouseFollower mouseFollower;
     public SpriteMask mask;
     public TMP_Text weightSign;
@@ -27,8 +27,11 @@ public class CuttingBoardMinigame : MonoBehaviour
 
     void Awake() {
         ResetMiniGame();
+        ingredient = mouseFollower.ingredientBeingCarried;
         ingredient.gameObject.transform.SetParent(this.transform);
         ingredient.gameObject.transform.position = new Vector3(-5, -2f);
+        ingredient.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 0);
+
         mainCamera = Camera.main; 
     }
     // Start is called before the first frame update
