@@ -20,6 +20,8 @@ public class IngredientShelf : MonoBehaviour
     {
         if(MouseHelper.wasClickedThisFrame(gameObject))
         {
+            string sound = new string[]{ "creak1", "creak2","creak3","creak4" }[Random.Range(0, 4)];
+            AudioManager.instance.Play(sound);
             if(_mouseFollower.ingredientInProcess == false && _mouseFollower.potionBeingCarried == null)
             {
                     GameObject ingredientInstance = Instantiate(ingredient, new Vector3(0, 0, 0), Quaternion.identity, _mouseFollower.transform);
