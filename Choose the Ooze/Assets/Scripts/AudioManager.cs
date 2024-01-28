@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
     {
 
         Debug.Log("Playing theme loop");
-        Sound s1 = Array.Find(sounds, sound => sound.name == "Theme");
+        Sound s1 = Array.Find(sounds, sound => sound.name == "theme");
         Sound s2 = Array.Find(sounds, sound => sound.name == "Theme_loop");
         s1.source.Play();
         while (s1.source.isPlaying)
