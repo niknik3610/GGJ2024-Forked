@@ -67,8 +67,7 @@ public class GrinderTemp : MonoBehaviour
                     }
                     else if(_mouseFollower.ingredientBeingCarried == null && ingredientInProcess != null)
                     {
-                        _mouseFollower.ingredientBeingCarried = ingredientInProcess;
-                        ingredientInProcess.transform.SetParent(_mouseFollower.transform, false);
+                        _mouseFollower.SetIngredient(ingredientInProcess);
                         _mouseFollower.ingredientInProcess = false;
                         ingredientInProcess = null;
                     }

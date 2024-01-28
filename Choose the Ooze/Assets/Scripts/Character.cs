@@ -121,10 +121,12 @@ public class Character : MonoBehaviour
             cm.SetDialogueTextField("Thanks!");
         }
         Destroy(_mouseFollower.potionBeingCarried.gameObject);
+        cm.OKButton.interactable = false;
         yield return new WaitForSeconds(waitBeforeLeavingTime);
         _mouseFollower.potionBeingCarried = null;
         GameState.getInstance().CircleWipe();
         yield return new WaitForSeconds(GameState.getInstance().transitionTime);
+        cm.OKButton.interactable = true;
         cm.CreateRandomCustomer();
         Destroy(gameObject);
     }

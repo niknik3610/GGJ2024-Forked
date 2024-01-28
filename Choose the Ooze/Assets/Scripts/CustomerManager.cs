@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CustomerManager : MonoBehaviour
     public TextMeshProUGUI dialogueTextField;
     public Transform characterPosition;
     public Cauldron cauldron;
+    public Button OKButton;
     void Start()
     {
         requestGenerator = new ClientRequestGenerator();

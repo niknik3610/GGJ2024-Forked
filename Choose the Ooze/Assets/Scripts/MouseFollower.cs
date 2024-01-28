@@ -21,4 +21,11 @@ public class MouseFollower : MonoBehaviour
         mousePos.z = 0;
         gameObject.transform.position = mousePos;
     }
+
+    public void SetIngredient(Ingredient ing)
+    {
+        ingredientBeingCarried = ing;
+        ing.transform.SetParent(transform);
+        ing.transform.SetLocalPositionAndRotation(new Vector3(), Quaternion.identity);
+    }
 }
