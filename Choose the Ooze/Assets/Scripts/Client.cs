@@ -7,12 +7,12 @@ public class ClientRequestGenerator
 {
 
     public int maxIngredients = 2;
-    public Queue<ClientRequest> generateRequests(SpecialClientType clientType)
+    public Queue<ClientRequest> generateRequests(ClientType clientType)
     {
         return new Queue<ClientRequest>();
     }
 
-    public ClientRequest generateRequest(SpecialClientType clientType)
+    public ClientRequest generateRequest(ClientType clientType)
     {
         var request = new ClientRequest();
         request.Request_required_ingredients = new List<(IngredientDetails.Emotion, Severity)>();

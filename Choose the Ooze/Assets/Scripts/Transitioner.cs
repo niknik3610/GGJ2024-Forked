@@ -17,9 +17,14 @@ public class Transitioner : MonoBehaviour
             {
                 if (rhit.collider.gameObject == gameObject)
                 {
-                    GameState.getInstance().attemptTransition(associatedScreen);
+                    Transition();
                 }
             }
         }
+    }
+
+    public void Transition()
+    {
+        GameState.getInstance().attemptTransition(associatedScreen);
     }
 }

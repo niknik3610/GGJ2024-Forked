@@ -30,7 +30,6 @@ public class Cauldron : MonoBehaviour
     public List<Ingredient> receivedIngredients = new();
     private Camera _camera;
     private float finalResult = 0f;
-    private ClientRequestGenerator requestGenerator;
 
     private TemperatureLevel prevFrameTemperatureLevel;
 
@@ -44,8 +43,6 @@ public class Cauldron : MonoBehaviour
         {
             _materials.Add((IngredientDetails.Material)scripObjects[i]);
         }
-        requestGenerator = new ClientRequestGenerator();
-        SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
         prevFrameTemperatureLevel = ingredientInstructions[0].requiredLevels.temperatureLevel;
     }
     // Update is called once per frame
@@ -70,10 +67,6 @@ public class Cauldron : MonoBehaviour
             }
         }
         temperatureBar.setSliderValue(temperatureLevel);
-        if (ingredientInstructions.Count == 0)
-        {
-            SetExpectedIngredients(requestGenerator.generateRequest(SpecialClientType.None));
-        }
         StartCoroutine("prevFrameTemperatureCheck");
         if((temperatureLevel > 0 || currentChangeRate > 0) && (temperatureLevel < 1 || currentChangeRate < 0))
         {

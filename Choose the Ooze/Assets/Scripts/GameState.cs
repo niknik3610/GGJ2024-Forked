@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     private State _activeState;
-    private bool _cameraSettled = true;
+    private bool _transitionInProgress = false;
     [SerializeField] private Transform[] _stateCameraPositions;
     [SerializeField] private Camera _camera;
 
@@ -42,13 +42,12 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
-        if (!_cameraSettled)
+        if (_transitionInProgress)
         {
             Vector3 target = _stateCameraPositions[(int) _activeState].position;
             target.z = -10;
             _camera.transform.position = target;
-            _cameraSettled = _camera.transform.position.Equals(target);
-            return;
+            _transitionInProgress = false;
         }
     }
 
@@ -57,19 +56,19 @@ public class GameState : MonoBehaviour
         transition.SetTrigger("StartTransition");
         yield return new WaitForSeconds(transitionTime);
         _activeState = state;
-        _cameraSettled = false;
+        _transitionInProgress = true;
     }
 
     public void attemptTransition(State nextState)
     {
-        if (!_cameraSettled) return;
+        if (_transitionInProgress) return;
 
         Ingredient heldItem = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
 
+        StartCoroutine(perform_transition(nextState));
         switch (_activeState)
         {
             case State.Workshop:
-                StartCoroutine(perform_transition(nextState));
                 break;
             case State.Cutting:
                 switch (nextState)
