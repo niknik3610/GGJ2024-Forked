@@ -27,6 +27,8 @@ public class Cauldron : MonoBehaviour
     public IngredientsPanel ingredientsPanel;
     public GameObject potionPrefab;
     public Potion potionBeingCreated;
+
+    public GameObject filledHole;
     private List<IngredientInstruction> ingredientInstructions = new ();
     private int currentIngredientIndex = 0;
     public List<Ingredient> receivedIngredients = new();
@@ -79,6 +81,7 @@ public class Cauldron : MonoBehaviour
 
     public void AddIngredient(Ingredient toAdd)
     {
+        filledHole.SetActive(true);
         toAdd.currentLevels.temperatureLevel = temperatureFloatToLevel(temperatureLevel);
         if(currentIngredientIndex >= ingredientInstructions.Count) 
         {
@@ -106,13 +109,17 @@ public class Cauldron : MonoBehaviour
 
     public void FinishBrewing()
     {
-        potionBeingCreated.value = finalResult;
-        potionBeingCreated.gameObject.SetActive(true);
-        ResetCauldron();
+        if(potionBeingCreated.potionContents.Request_required_ingredients.Count != 0)
+        {
+            potionBeingCreated.value = finalResult;
+            potionBeingCreated.gameObject.SetActive(true);
+            ResetCauldron();
+        }
     }
 
     public void ResetCauldron()
     {
+        filledHole.SetActive(false);
         ingredientInstructions = new();
         ingredientsPanel.clearEntries();
         for(int i = 0; i < receivedIngredients.Count; i++)
