@@ -21,23 +21,32 @@ public class CuttingBoardMinigame : MonoBehaviour
     private Ingredient cutIngredient;
 
 
-    public void ResetMiniGame() {
+    public void EnterMiniGame() {
+        Debug.Log("Entering cutting");
+        knife.transform.SetParent(mouseFollower.transform);
         allowedToCut = true;
         finished = false;
         cutSign.SetActive(true);
         pickOneSign.SetActive(false);
         knife.SetActive(true);
-    }
-
-    void Awake() {
-        ResetMiniGame();
         ingredient = mouseFollower.ingredientBeingCarried;
         ingredient.gameObject.transform.SetParent(this.transform);
         ingredient.gameObject.transform.position = new Vector3(-5, -2f);
         ingredient.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 0);
 
         ingredient.gameObject.transform.rotation *= Quaternion.Euler(0, 0, -90);
+    }
+    public void ExitMiniGame()
+    {
+        allowedToCut = false;
+        finished = true;
+        cutSign.SetActive(false);
+        pickOneSign.SetActive(true);
+        knife.SetActive(false);
+    }
 
+    void Awake() {
+        ExitMiniGame();
         mainCamera = Camera.main; 
     }
     // Start is called before the first frame update

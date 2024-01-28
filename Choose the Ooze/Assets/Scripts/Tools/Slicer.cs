@@ -26,6 +26,8 @@ public class Slicer : MonoBehaviour
         float localLocationSlicePointX = Math.Abs(slicePointX) - leftBoundIngr;
 
         float ingrLeftPercent = localLocationSlicePointX / ingrWidth;
+        ingredient.currentLevels.cuttingLevel = ingrLeftPercent;
+
         float scaleForSecondPartWidth = 1 - ingrLeftPercent;
 
         maskTransform.localScale = new Vector3(
@@ -46,8 +48,8 @@ public class Slicer : MonoBehaviour
             ),
             Quaternion.identity
         );
-
-
+        cutPiece.currentLevels.cuttingLevel = scaleForSecondPartWidth;
+        Debug.Log(ingrLeftPercent);
 
         SpriteMask partMask = UnityEngine.Object.Instantiate(ingredientOneMask, new Vector3(), Quaternion.identity);
         cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);

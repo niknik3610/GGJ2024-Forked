@@ -56,25 +56,28 @@ public class GameState : MonoBehaviour
     {
         CircleWipe();
         yield return new WaitForSeconds(transitionTime);
-        _activeState = state;
-        _transitionInProgress = true;
-    }
-
-    public void attemptTransition(State nextState)
-    {
-        if (_transitionInProgress) return;
-
-        Ingredient heldItem = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
-
-        StartCoroutine(perform_transition(nextState));
         switch (_activeState)
         {
             case State.Workshop:
-                break;
-            case State.Cutting:
-                switch (nextState)
+                switch (state)
                 {
                     case State.Workshop:
+                        break;
+                    case State.Cutting:
+                        FindObjectOfType<CuttingBoardMinigame>().EnterMiniGame();
+                        break;
+                    case State.Grinding:
+                        break;
+                    case State.Selling:
+                        break;
+                }
+                break;
+            case State.Cutting:
+                
+                switch (state)
+                {
+                    case State.Workshop:
+                        FindObjectOfType<CuttingBoardMinigame>().ExitMiniGame();
                         break;
                     case State.Cutting:
                         break;
@@ -89,6 +92,17 @@ public class GameState : MonoBehaviour
             case State.Selling:
                 break;
         }
+        _activeState = state;
+        _transitionInProgress = true;
+    }
+
+    public void attemptTransition(State nextState)
+    {
+        if (_transitionInProgress) return;
+
+        Ingredient heldItem = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
+
+        StartCoroutine(perform_transition(nextState));
     }
     public void CircleWipe()
     {
