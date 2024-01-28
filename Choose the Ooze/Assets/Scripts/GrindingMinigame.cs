@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
 public class GrindingMinigame : MonoBehaviour
 {
-    Camera grindingCamera;
-    const float GRIND_SPEED = .1f;
-    public Ingredient ingredient;
     public GameObject powder;
-    public GameObject raw;
+    public Ingredient raw;
+    public List<BoxCollider2D> sensors;
     public SpriteMask mask;
     public Pestle pestle;
-    float grinding_percentage;
 
-    void Awake()
-    {
-        grindingCamera = Camera.main;
-    }
+    const float GRIND_SPEED = 4f;
+
+    BoxCollider2D pestleCollider;
+    Collider2D triggeredSensor;
+    float grinding_percentage;
 
     void ResetMinigame()
     {
-        switch (ingredient.currentLevels.grindLevel)
+        pestleCollider = pestle.GetComponent<BoxCollider2D>();
+
+        switch (raw.currentLevels.grindLevel)
         {
             case GrindLevel.None:
                 grinding_percentage = 0;
@@ -54,54 +55,56 @@ public class GrindingMinigame : MonoBehaviour
         );
         powder.transform.position = new Vector3(
             powder.transform.position.x,
-            grinding_percentage,
+            grinding_percentage - 1.5f,
             powder.transform.position.z
         );
     }
 
     // Start is called before the first frame update
-    void Start() { 
+    void Start()
+    {
+        // raw = FindObjectOfType<MouseFollower>().ingredientBeingCarried;
         ResetMinigame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Collider pestleCollider = pestle.GetComponent<Collider>();
-        Collider rawCollider = raw.GetComponent<Collider>();
-
-        // highest points of the mask and the raw ingredient
-        float maskY = mask.transform.position.y + mask.transform.localScale.y / 2;
-        float rawY = raw.transform.position.y + raw.transform.localScale.y / 2;
-
-        if (
-            grinding_percentage < 1
-            && pestleCollider.bounds.Intersects(rawCollider.bounds)
-            && maskY > rawY
-        )
+        if (grinding_percentage >= 1) return;
+        List<Collider2D> triggeredSensors = new List<Collider2D>();
+        int count = pestleCollider.OverlapCollider(
+            new ContactFilter2D().NoFilter(),
+            triggeredSensors
+        );
+        if (triggeredSensors.FirstOrDefault() != null && triggeredSensors.FirstOrDefault() != triggeredSensor)
         {
-            grinding_percentage += GRIND_SPEED;
-            // update grind level of ingredient
-            switch (grinding_percentage)
+            grinding_percentage += GRIND_SPEED * Time.deltaTime;
+            if (grinding_percentage > 1)
             {
-                case float n when n < 0.3f:
-                    ingredient.currentLevels.grindLevel = GrindLevel.None;
-                    break;
-
-                case float n when n < 0.6f:
-                    ingredient.currentLevels.grindLevel = GrindLevel.Low;
-                    break;
-
-                case float n when n < 1:
-                    ingredient.currentLevels.grindLevel = GrindLevel.Medium;
-                    break;
-
-                case float n when n == 1:
-                    ingredient.currentLevels.grindLevel = GrindLevel.High;
-                    break;
+                grinding_percentage = 1;
             }
-
-            UpdatePosition();
         }
+        triggeredSensor = triggeredSensors.FirstOrDefault();
+
+        switch (grinding_percentage)
+        {
+            case float n when n < 0.3f:
+                raw.currentLevels.grindLevel = GrindLevel.None;
+                break;
+
+            case float n when n < 0.6f:
+                raw.currentLevels.grindLevel = GrindLevel.Low;
+                break;
+
+            case float n when n < 1:
+                raw.currentLevels.grindLevel = GrindLevel.Medium;
+                break;
+
+            case float n when n == 1:
+                raw.currentLevels.grindLevel = GrindLevel.High;
+                break;
+        }
+
+        UpdatePosition();
     }
 }
