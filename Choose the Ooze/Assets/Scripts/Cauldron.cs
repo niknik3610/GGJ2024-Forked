@@ -148,7 +148,9 @@ public class Cauldron : MonoBehaviour
         }
         ingredientsPanel.UpdateInstructionList(ingredientInstructions);
         expectedTemperature = ingredientInstructions[0].requiredLevels.temperatureLevel;
-        potionBeingCreated = Instantiate(potionPrefab, gameObject.transform.position, Quaternion.identity).GetComponent<Potion>();
+        var potionPos =  gameObject.transform.position;
+        potionPos.z = 0;
+        potionBeingCreated = Instantiate(potionPrefab, potionPos, Quaternion.identity).GetComponent<Potion>();
         potionBeingCreated.gameObject.SetActive(false);
     }
 
