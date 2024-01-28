@@ -64,48 +64,6 @@ public class GrindingMinigame : MonoBehaviour
             powder.transform.position.z
         );
     }
-
-    void ResetMinigame()
-    {
-        pestleCollider = pestle.GetComponent<BoxCollider2D>();
-
-        switch (raw.currentLevels.grindLevel)
-        {
-            case GrindLevel.None:
-                grinding_percentage = 0;
-                break;
-
-            case GrindLevel.Low:
-                grinding_percentage = 0.3f;
-                break;
-
-            case GrindLevel.Medium:
-                grinding_percentage = 0.6f;
-                break;
-
-            case GrindLevel.High:
-                grinding_percentage = 1;
-                break;
-        }
-
-        UpdatePosition();
-    }
-
-    void UpdatePosition()
-    {
-        // Move the raw and powder ingredients per the grinding percentage
-        raw.transform.position = new Vector3(
-            raw.transform.position.x,
-            -grinding_percentage,
-            raw.transform.position.z
-        );
-        powder.transform.position = new Vector3(
-            powder.transform.position.x,
-            grinding_percentage - 1.5f,
-            powder.transform.position.z
-        );
-    }
-
     // Start is called before the first frame update
     void Start()
     {
