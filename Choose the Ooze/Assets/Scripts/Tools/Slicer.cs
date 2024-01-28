@@ -52,7 +52,7 @@ public class Slicer : MonoBehaviour
         Debug.Log(ingrLeftPercent);
 
         SpriteMask partMask = UnityEngine.Object.Instantiate(ingredientOneMask, new Vector3(), Quaternion.identity);
-        cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
+        // cutPiece.transform.rotation *= Quaternion.Euler(0, 0, -90);
         partMask.transform.rotation *= Quaternion.Euler(0, 0, -90);
 
         partMask.gameObject.transform.localScale = aspectRatio;
@@ -70,7 +70,4 @@ public class Slicer : MonoBehaviour
         partMask.transform.SetParent(cutPiece.transform);
         return cutPiece;
     }
-
-   public void HideMasks() {
-   }
 }

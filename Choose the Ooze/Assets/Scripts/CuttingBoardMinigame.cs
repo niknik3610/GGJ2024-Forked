@@ -16,28 +16,35 @@ public class CuttingBoardMinigame : MonoBehaviour
     public TMP_Text weightSign;
     public GameObject cutSign;
     public GameObject pickOneSign;
+    public GameObject locationReferenceIngredient;
+
     private bool allowedToCut;
     private bool finished;
+    private bool allowedToRun;
     private Ingredient cutIngredient;
 
 
     public void EnterMiniGame() {
-        Debug.Log("Entering cutting");
         knife.transform.SetParent(mouseFollower.transform);
         allowedToCut = true;
         finished = false;
         cutSign.SetActive(true);
         pickOneSign.SetActive(false);
         knife.SetActive(true);
-        ingredient = mouseFollower.ingredientBeingCarried;
-        ingredient.gameObject.transform.SetParent(this.transform);
-        ingredient.gameObject.transform.position = new Vector3(-5, -2f);
-        ingredient.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 0);
+        mask.gameObject.SetActive(false);
+        if (mouseFollower.ingredientBeingCarried != null) {
+            ingredient = mouseFollower.ingredientBeingCarried;
+            ingredient.gameObject.transform.SetParent(this.transform);
+            ingredient.gameObject.transform.position = locationReferenceIngredient.transform.position;
+            ingredient.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 0);
 
-        ingredient.gameObject.transform.rotation *= Quaternion.Euler(0, 0, -90);
+            // ingredient.gameObject.transform.rotation *= Quaternion.Euler(0, 0, -90);
+            allowedToRun = true;
+        }
     }
     public void ExitMiniGame()
     {
+        allowedToRun = false;
         allowedToCut = false;
         finished = true;
         cutSign.SetActive(false);
@@ -52,13 +59,12 @@ public class CuttingBoardMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mask.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (finished) return;
+        if (finished || !allowedToRun) return;
 
         String mat = ingredient.material.ingredientName;
         float weight = ingredient.material.weight;
@@ -116,6 +122,7 @@ public class CuttingBoardMinigame : MonoBehaviour
             cutIngredient.gameObject.SetActive(false);
             Destroy(cutIngredient);
             finished = true;
+            ingredient.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             return ingredient;
         }
         //right piece
@@ -123,6 +130,7 @@ public class CuttingBoardMinigame : MonoBehaviour
             ingredient.gameObject.SetActive(false);
             Destroy(ingredient);
             finished = true;
+            cutIngredient.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             return cutIngredient;
         }
 
