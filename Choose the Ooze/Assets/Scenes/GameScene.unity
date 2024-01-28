@@ -2773,6 +2773,7 @@ GameObject:
   - component: {fileID: 838605582}
   - component: {fileID: 838605581}
   - component: {fileID: 838605586}
+  - component: {fileID: 838605587}
   m_Layer: 0
   m_Name: Grinder
   m_TagString: Untagged
@@ -2883,6 +2884,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &838605587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838605580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086c788357679347a80d7dc85f1a4b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.005
+  speed: 4
 --- !u!1 &841439260
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,6 +3774,7 @@ GameObject:
   - component: {fileID: 1183383087}
   - component: {fileID: 1183383089}
   - component: {fileID: 1183383088}
+  - component: {fileID: 1183383090}
   m_Layer: 0
   m_Name: Cutter
   m_TagString: Untagged
@@ -3868,6 +3884,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1183383090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183383081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086c788357679347a80d7dc85f1a4b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.005
+  speed: 4
 --- !u!114 &1204829849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6199604451275333199, guid: fa10973fb316a474090a7fe297026b6b, type: 3}
