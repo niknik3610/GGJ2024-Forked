@@ -12,7 +12,6 @@ public class GrindingMinigame : MonoBehaviour
     public List<BoxCollider2D> sensors;
     public SpriteMask mask;
     public Pestle pestle;
-    float grinding_percentage;
 
     const float GRIND_SPEED = 4f;
 
@@ -63,7 +62,9 @@ public class GrindingMinigame : MonoBehaviour
 
     void ResetMinigame()
     {
-        switch (ingredient.currentLevels.grindLevel)
+        pestleCollider = pestle.GetComponent<BoxCollider2D>();
+
+        switch (raw.currentLevels.grindLevel)
         {
             case GrindLevel.None:
                 grinding_percentage = 0;
@@ -95,7 +96,7 @@ public class GrindingMinigame : MonoBehaviour
         );
         powder.transform.position = new Vector3(
             powder.transform.position.x,
-            grinding_percentage,
+            grinding_percentage - 1.5f,
             powder.transform.position.z
         );
     }
