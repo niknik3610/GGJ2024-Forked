@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Ingredient : MonoBehaviour
 {
     public IngredientDetails.Material material;
-    public ProcessingLevels currentLevels;
+    public ProcessingLevels currentLevels = new ProcessingLevels(false);
     public bool beingCarried {get; set;} = false;
     private Camera m_Camera;
 

@@ -3526,7 +3526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98ba52b0fc2fc44c818adc9f904926b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues: {fileID: 1780502462}
+  dialogues: {fileID: 0}
 --- !u!114 &1319440914 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2598854477873040288, guid: 12d5fc05bfb8b9c40a082e60ccf37b52, type: 3}
@@ -3835,6 +3835,7 @@ MonoBehaviour:
   _camera: {fileID: 841439262}
   transition: {fileID: 566355556}
   transitionTime: 1
+  currentScore: 0
 --- !u!4 &1492476126
 Transform:
   m_ObjectHideFlags: 0
@@ -4162,6 +4163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientBeingCarried: {fileID: 0}
+  potionBeingCarried: {fileID: 0}
   ingredientInProcess: 0
 --- !u!4 &1615359319
 Transform:
@@ -4645,6 +4647,22 @@ MonoBehaviour:
     severity: 1
     dialogueLines:
     - 'My wife just left me... I need something for the pain. '
+  acceptanceDialogues:
+  - happinessLevel: 0
+    dialogueLines:
+    - Are you trying to poison me!? I'm not paying a penny for this!
+  - happinessLevel: 1
+    dialogueLines:
+    - Well, I guess I can use this as dish soap...
+  - happinessLevel: 2
+    dialogueLines:
+    - Thanks, I'm sure this will help me.
+  - happinessLevel: 3
+    dialogueLines:
+    - Thank you very much! I feel lighter just looking at this!
+  - happinessLevel: 4
+    dialogueLines:
+    - This is perfect! My troubles are floating away... I can't thank you enough!
 --- !u!1 &1783990353
 GameObject:
   m_ObjectHideFlags: 0
