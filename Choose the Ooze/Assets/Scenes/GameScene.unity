@@ -4920,7 +4920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74639a27fe626c49a0ef8efa03ac98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  implementedTypes: 0100000004000000050000000200000006000000
+  implementedTypes: 01000000020000000300000004000000050000000600000008000000
   currentCharacter: {fileID: 0}
   characterPrefab: {fileID: 3801080684705453815, guid: faa3c960019cc7e4d9f43165e6ba933e, type: 3}
   dialogueTextField: {fileID: 1319440914}
@@ -6585,6 +6585,19 @@ MonoBehaviour:
     outroLines:
     - I know you're way better than my court alchemist - can you help?
     - Can you solve this? My cats hate it when I'm unwell...
+  - client: 8
+    introLines:
+    - 'Uh, mom said I should ask you for help. '
+    outroLines:
+    - Soo, can you help me?
+    - Do you have a, uh, poh-shun for that?
+  - client: 3
+    introLines:
+    - 'Yarrr! '
+    - 'I am the scourge of the Northern seas! However, '
+    outroLines:
+    - Bring me reprieve, magicker!
+    - I require healing. Assist me, druid!
   ailmentDialogues:
   - emotion: 1
     severity: 0

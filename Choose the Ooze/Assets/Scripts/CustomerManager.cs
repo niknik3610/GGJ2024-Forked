@@ -14,7 +14,7 @@ public class CustomerManager : MonoBehaviour
     public Transform characterPosition;
     public Cauldron cauldron;
     public Button OKButton;
-    private ClientType lastClient = ClientType.Child;
+    private ClientType lastClient = ClientType.None;
     void Start()
     {
         requestGenerator = new ClientRequestGenerator();
