@@ -1,3 +1,5 @@
+# Global Game Jam 2024: Choose the Ooze
+
 ### What is this?
 Our game for the 2024 Leipzig Global Game Jam, written in Unity. View the submission [here](https://globalgamejam.org/games/2024/choose-ooze-6). 
 
